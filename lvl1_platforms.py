@@ -7,23 +7,24 @@ def readJson(file):
         with open(file, 'r') as f:
             data = json.load(f)
         return data
+
 def import_platforms():
 
     platform_list = []
     #PLATAFORMAS LOW LEVEL/MID LEVEL
-    platform_list.append(Plataform(x=400,y=600,width=50,height=50,type=0))
-    platform_list.append(Plataform(x=450,y=600,width=50,height=50,type=1))
-    platform_list.append(Plataform(x=500,y=600,width=50,height=50,type=2))   
-    platform_list.append(Plataform(x=600,y=530,width=50,height=50,type=12))
-    platform_list.append(Plataform(x=650,y=530,width=50,height=50,type=14))
-    platform_list.append(Plataform(x=750,y=460,width=50,height=50,type=12))
-    platform_list.append(Plataform(x=800,y=460,width=50,height=50,type=13))
-    platform_list.append(Plataform(x=850,y=460,width=50,height=50,type=13))
-    platform_list.append(Plataform(x=900,y=460,width=50,height=50,type=14))
-    platform_list.append(Plataform(x=0,y=460,width=150,height=50,type=13))
-    platform_list.append(Plataform(x=0,y=460,width=150,height=50,type=13))
-    platform_list.append(Plataform(x=150,y=460,width=100,height=50,type=14))
-    platform_list.append(Plataform(x=-17,y=0,width=20,height=1000,type=15))
+   # platform_list.append(Plataform(x=400,y=600,width=50,height=50,type=0))
+    #platform_list.append(Plataform(x=450,y=600,width=50,height=50,type=1))
+    #platform_list.append(Plataform(x=500,y=600,width=50,height=50,type=2))   
+   # platform_list.append(Plataform(x=600,y=530,width=50,height=50,type=12))
+    #platform_list.append(Plataform(x=650,y=530,width=50,height=50,type=14))
+    #platform_list.append(Plataform(x=750,y=460,width=50,height=50,type=12))
+    #platform_list.append(Plataform(x=800,y=460,width=50,height=50,type=13))
+    #platform_list.append(Plataform(x=850,y=460,width=50,height=50,type=13))
+    #platform_list.append(Plataform(x=900,y=460,width=50,height=50,type=14))
+    #platform_list.append(Plataform(x=0,y=460,width=150,height=50,type=13))
+    #platform_list.append(Plataform(x=0,y=460,width=150,height=50,type=13))
+   # platform_list.append(Plataform(x=150,y=460,width=100,height=50,type=14))
+    #platform_list.append(Plataform(x=-17,y=0,width=20,height=1000,type=15))
     platform_list.append(Plataform(x=1350,y=460,width=150,height=50,type=13))
     platform_list.append(Plataform(x=1200,y=460,width=150,height=50,type=12))
     platform_list.append(Plataform(x=1200,y=460,width=150,height=50,type=12))

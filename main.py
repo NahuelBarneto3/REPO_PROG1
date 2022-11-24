@@ -76,7 +76,7 @@ while True:
     # screen.blit()
     # screen.blit(score_text,(10,10))
     
-    enemy_bullet.update(delta_ms)
+    enemy_bullet.update(delta_ms)             
     enemy_bullet.draw(screen) 
     player_1.events(delta_ms,keys)
     player_1.update(delta_ms,platform_list)
@@ -86,9 +86,9 @@ while True:
         player_1.draw_player_won(screen)
        # player_1.winning_state()
         for ground_enemy in ground_enemy_list:
-            ground_enemy.winning_state()
+            ground_enemy.winning_status()
         for att_enemy in att_enemy_list:
-            att_enemy.winning_state() 
+            att_enemy.winning_status() 
 
     #print(delta_ms)
     # enemigos update

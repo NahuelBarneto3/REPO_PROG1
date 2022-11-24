@@ -125,10 +125,10 @@ class Enemy:
         return retorno    
     '''
     
-    def winning_state(self):
+    def winning_status(self):
         
         self.winning_state = True
-        
+        print(type(self.winning_state))
         
 
     def update(self,delta_ms,plataform_list):

@@ -12,8 +12,8 @@ class Attacking_Enemy():
         self.die_anim = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Dead ({0}).png\\",10,flip=False,scale=e_scale)
         self.stay = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Idle ({0}).png\\",10,flip=False,scale=e_scale)
         #self.sight_range = pygame.Rect()
-        self.fire_anim_r = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Objects\Bullet_00{0}.png\\",5,flip=False, scale= e_scale)
-        self.fire_anim_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Objects\Bullet_00{0}.png\\",5,flip=True, scale= e_scale)
+        #self.fire_anim_r = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Objects\Bullet_00{0}.png\\",5,flip=False, scale= e_scale)
+        #self.fire_anim_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Objects\Bullet_00{0}.png\\",5,flip=True, scale= e_scale)
         self.frame = 0
         self.move_x = 0
         self.move_y = 0
@@ -69,7 +69,7 @@ class Attacking_Enemy():
             if(self.tiempo_transcurrido_move >= self.move_rate_ms):
                 self.tiempo_transcurrido_move = 0
                 self.change_x(self.move_x)
-                print(self.rect.x)
+                #print(self.rect.x)
                 if self.contador <= 300 and self.rect.x >= 548:
                     self.move_x = -self.speed_walk
                     self.animation = self.walk_l
@@ -137,7 +137,7 @@ class Attacking_Enemy():
     def saw_player(self):       
         if(self.collide == False):           
                 self.change_x(self.move_x)
-                print(self.rect.x)
+                #print(self.rect.x)
                 if self.contador_player <= 50:
                     self.move_x = -self.speed_walk - 9
                     self.animation = self.walk_l
@@ -154,7 +154,7 @@ class Attacking_Enemy():
                 else:
                     self.contador_player = 0
                     
-    def winning_state(self):
+    def winning_status(self):
         self.winnin_state = True
 
     def hit_on_head(self):
@@ -179,6 +179,8 @@ class Attacking_Enemy():
                     #print(self.frame)
                 else: 
                     self.frame = 0
+            elif (self.frame >= (len(self.animation) - 1)):
+                self.frame = 0      
         else:
             self.time_last_col = delta_ms
             if(self.time_last_col >= self.dying_time):
@@ -200,6 +202,7 @@ class Attacking_Enemy():
     def update(self,delta_ms,plataform_list):
             self.do_movement(delta_ms,plataform_list)
             self.do_animation(delta_ms) 
+            
 
     def draw(self,screen):
         if(not self.winnin_state):
@@ -210,6 +213,8 @@ class Attacking_Enemy():
                     pygame.draw.rect(screen,color=(255,255,0),rect=self.ground_collition_rect)
                     pygame.draw.rect(screen,color=(0,0,255),rect=self.sight_range_rect_r)
                     pygame.draw.rect(screen,color=(0,0,255),rect=self.sight_range_rect_l)
-                
-                self.image = self.animation[self.frame]
+                try:
+                    self.image = self.animation[self.frame]
+                except IndexError:
+                    print("ERROR",self.frame,len(self.animation))
                 screen.blit(self.image,self.rect)

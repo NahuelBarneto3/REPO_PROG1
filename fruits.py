@@ -53,14 +53,14 @@ class Fruits:
         self.rect.y += delta_y
 
     def pick_up_fruit(self):
-        print("asdadadadsdasad")
         self.picked_up = True
 
     def update(self,delta_ms):
        self.do_animation(delta_ms)
        
     def draw(self,screen):
-        
+        if not self.picked_up:
+            if not self.winning_state:
                 if(DEBUG):
                     pygame.draw.rect(screen,color=(255,0,0),rect= self.rect)
                # print(self.rect)
