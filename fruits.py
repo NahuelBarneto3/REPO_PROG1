@@ -53,8 +53,9 @@ class Fruits:
         self.rect.y += delta_y
 
     def pick_up_fruit(self):
+        self.rect = pygame.Rect(0,0,0,0)
         self.picked_up = True
-
+       
     def update(self,delta_ms):
        self.do_animation(delta_ms)
        

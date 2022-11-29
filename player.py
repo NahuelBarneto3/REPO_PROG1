@@ -70,7 +70,7 @@ class Player:
         self.time_last_score = pygame.time.get_ticks()
 
         self.winning_state = False
-
+        self.replay_rect = pygame.Rect(0,0,0,0)
     def walk(self,direction):
         if(self.direction != direction or (self.animation != self.walk_r and self.animation != self.walk_l)):
             self.frame = 0
@@ -151,8 +151,14 @@ class Player:
 
             if(abs(self.y_start_jump - self.rect.y) > self.jump_height and self.is_jump):
                 self.move_y = 0
-          
-            self.change_x(self.move_x)
+
+            if(self.rect.x > -23 and self.rect.x < 1410):
+                #print(self.rect.x)
+                self.change_x(self.move_x)
+            elif(self.rect.x == -23):
+                self.change_x(1)
+            else:
+                self.change_x(-1)
             self.change_y(self.move_y)
 
             if(not self.is_on_plataform(plataform_list)):
@@ -178,16 +184,16 @@ class Player:
 
     def hit_on_enemy_or_fruit(self,enemy_type="ground_enemy",is_fruit=False):   
         last_score = pygame.time.get_ticks()
-        if(last_score - self.time_last_score >= self.score_cooldown):
-            if(enemy_type == "att_enemy"):
-                self.player_score += 1500
-                self.time_last_score = last_score
-            elif is_fruit:
-                self.player_score += 200
-                self.time_last_score = last_score
-            else:
-                self.player_score += 500
-                self.time_last_score = last_score
+        if(is_fruit == False):
+            if(last_score - self.time_last_score >= self.score_cooldown):
+                if(enemy_type == "att_enemy"):
+                    self.player_score += 1500
+                    self.time_last_score = last_score
+                else:
+                    self.player_score += 500
+                    self.time_last_score = last_score
+        else:
+            self.player_score += 200
 
     def get_player_score(self):
         return self.player_score
@@ -196,9 +202,14 @@ class Player:
         won_font = pygame.font.SysFont("segoe print",100)
         won_text = won_font.render("YOU'VE WON!!",True,(255,0,0))
         won_score =won_font.render("Your score: {0}".format(self.player_score),True,(255,0,0))
+        play_again_font = pygame.font.SysFont("Verdana",100)
+        play_again_text = play_again_font.render("PLAY AGAIN",True,(100,150,100))
+        self.replay_rect = play_again_font
         self.winning_state = True
+        
         screen.blit(won_text,(250,300))
         screen.blit(won_score,(250,400))
+        screen.blit(play_again_text,(250,500))
 
     def hit_by_enemy(self):
         
@@ -232,6 +243,8 @@ class Player:
             else: 
                 self.frame = 0
     
+    def mouse(self):
+        print("SS")
     # def winning_state(self):
     #     self.speed_walk = 0
     #     self.winning_state = True
@@ -261,6 +274,9 @@ class Player:
             if(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]):
                 self.walk(DIRECTION_L)
 
+            if(keys[pygame.MOUSEBUTTONDOWN]):
+                self.mouse()
+
             if(not keys[pygame.K_LEFT] and keys[pygame.K_RIGHT]):
                 self.walk(DIRECTION_R)
 
@@ -285,3 +301,5 @@ class Player:
             
             if(keys[pygame.K_a] and not keys[pygame.K_s]):
                 self.knife()   
+            
+          

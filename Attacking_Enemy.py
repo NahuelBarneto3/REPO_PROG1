@@ -26,7 +26,6 @@ class Attacking_Enemy():
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-
         self.contador_player = 0
         self.collide = False
         self.is_alive = True
@@ -179,8 +178,8 @@ class Attacking_Enemy():
                     #print(self.frame)
                 else: 
                     self.frame = 0
-            elif (self.frame >= (len(self.animation) - 1)):
-                self.frame = 0      
+            # elif (self.frame >= (len(self.animation) - 1)):
+            #     self.frame = 0      
         else:
             self.time_last_col = delta_ms
             if(self.time_last_col >= self.dying_time):
@@ -216,5 +215,5 @@ class Attacking_Enemy():
                 try:
                     self.image = self.animation[self.frame]
                 except IndexError:
-                    print("ERROR",self.frame,len(self.animation))
+                    print("ATTERROR",self.frame,len(self.animation))
                 screen.blit(self.image,self.rect)
