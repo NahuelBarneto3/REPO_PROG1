@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from gui_widget import Widget
-from gui_button import Button
+from gui_button import *
 from auxiliar import Auxiliar
 from constantes import *
 from player import Player
@@ -53,8 +53,8 @@ class FormMenu(Form):
         #self.main_menu_ttl =
 
         
-        self.start_btn = Button(x=1300,y=ALTO_VENTANA//2-100,text='start',screen=master_surface,on_click=self.click_start,on_click_param="form_start_lvl",font_size=40)
-        self.option_btn = Button(x=1300,y=ALTO_VENTANA//2-200,text='options',screen=master_surface,on_click=self.click_start,on_click_param="option_form",font_size=40)
+        self.start_btn = Button(x=ANCHO_VENTANA/1.2,y=ALTO_VENTANA//2-100,text='start',screen=master_surface,on_click=self.click_start,on_click_param="form_start_lvl",font_size=40)
+        self.option_btn = Button(x=ANCHO_VENTANA/1.2,y=ALTO_VENTANA//2-200,text='options',screen=master_surface,on_click=self.click_start,on_click_param="option_form",font_size=40)
         # self.boton1 = Button(master=self,x=100,y=50,w=200,h=50,color_background=(255,0,0),color_border=(255,0,255),on_click=self.on_click_boton1,on_click_param="1234",text="MENU",font="Verdana",font_size=30,font_color=(0,255,0))
         # self.boton2 = Button(master=self,x=200,y=50,w=200,h=50,color_background=(255,0,0),color_border=(255,0,255),on_click=self.on_click_boton1,on_click_param="8",text="MENU 2",font="Verdana",font_size=30,font_color=(0,255,0))
         self.lista_widget = [self.start_btn,self.option_btn]
@@ -106,7 +106,7 @@ class FormLvlStart(Form):
 
     def config(self):
         self.config = LvlConfig(1)
-
+        return self.config
 
     def update(self,keys):
         
@@ -143,6 +143,7 @@ class FormLvlStart(Form):
         if(self.player_1.get_player_lives() == 0):          
             if self.player_1.player_is_dead():
                 self.set_active("form_death")
+                
         self.screen.blit(self.imagen_fondo,self.imagen_fondo.get_rect())
 
     def draw(self):
@@ -171,9 +172,9 @@ class FormOptions(Form):
 
     #self.main_menu_ttl = 
 
-        self.music_on_btn = Button(x=1240,y=ALTO_VENTANA//2-200,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
-        self.music_off_btn = Button(x=1240,y=ALTO_VENTANA//2-100,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
-        self.back_btn = Button(x=1240,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
+        self.music_on_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
+        self.music_off_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
+        self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
         self.lista_widget = [self.music_off_btn,self.music_on_btn,self.back_btn]
         
 
@@ -202,11 +203,11 @@ class FormPause(Form):
 
     #self.main_menu_ttl = 
 
-        self.music_on_btn = Button(x=1240,y=ALTO_VENTANA//2-100,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
-        self.music_off_btn = Button(x=1240,y=ALTO_VENTANA//2-200,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
-        self.back_btn = Button(x=1240,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
+        self.music_on_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
+        self.music_off_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
+        self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
 
-        self.resume_btn = Button(x=1240,y=ALTO_VENTANA//2,text='Volver al juego',screen=master_surface,on_click=self.click_resume,on_click_param="form_start_lvl",font_size=40)
+        self.resume_btn = Button(x=ANCHO_VENTANA/1.2-15,y=ALTO_VENTANA//2,text='Volver al juego',screen=master_surface,on_click=self.click_resume,on_click_param="form_start_lvl",font_size=40)
         self.lista_widget = [self.music_off_btn,self.music_on_btn,self.back_btn,self.resume_btn]
 
     
@@ -236,14 +237,15 @@ class FormDeath(Form):
     def __init__(self,name,master_surface,x,y,active,lvl):
         super().__init__(name,master_surface,x,y,active,lvl)
 
-    #self.main_menu_ttl = 
+        self.music_on_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
+        self.music_off_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
+        self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
+        self.perdiste_txt = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2+50,text='Perdiste',screen=master_surface,font_size=40)
+        self.retry_btn = Button(x=ANCHO_VENTANA/1.2-15,y=ALTO_VENTANA//2+100,text='Reintentar',screen=master_surface,on_click=self.click_retry,on_click_param="menu_form",font_size=25)
+        self.lista_widget = [self.music_off_btn,self.music_on_btn,self.back_btn,self.retry_btn,self.perdiste_txt]
 
-        self.music_on_btn = Button(x=1240,y=ALTO_VENTANA//2-100,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
-        self.music_off_btn = Button(x=1240,y=ALTO_VENTANA//2-200,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
-        self.back_btn = Button(x=1240,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
-
-        self.lista_widget = [self.music_off_btn,self.music_on_btn,self.back_btn]
-
+    def click_retry(self,parametro):
+        self.set_active(parametro)
 
     def click_music_on(self, parametro):
         pygame.mixer.music.unpause()

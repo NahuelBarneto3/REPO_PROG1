@@ -56,8 +56,8 @@ while True:
         form_pause.update(keys)
         form_pause.draw()
     elif(form_death.active):
-        form_pause.update(lista_eventos)
-        form_pause.draw()
+        form_death.update(lista_eventos)
+        form_death.draw()
 
 
     # screen.blit(imagen_fondo,imagen_fondo.get_rect())
