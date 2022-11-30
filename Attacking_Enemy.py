@@ -138,14 +138,14 @@ class Attacking_Enemy():
                 self.change_x(self.move_x)
                 #print(self.rect.x)
                 if self.contador_player <= 50:
-                    self.move_x = -self.speed_walk - 9
+                    self.move_x = -self.speed_walk - 5
                     self.animation = self.walk_l
                     self.contador_player += 1 
                     #print("CONTADOR PLAYER",self.contador_player)
                     if self.rect.x <= 548:
                         self.contador_player = 51
                 elif self.contador_player <= 100:                 
-                    self.move_x = self.speed_walk + 9
+                    self.move_x = self.speed_walk + 5
                     self.animation = self.walk_r
                     self.contador_player += 1
                     if self.rect.x >= 849:

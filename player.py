@@ -6,7 +6,7 @@ from collitions import Collition
 
 
 class Player:
-    def __init__(self,x,y,speed_walk,speed_run,gravity,jump_power,frame_rate_ms,move_rate_ms,jump_height,p_scale=1,interval_time_jump=100) -> None:
+    def __init__(self,x,y,respawn_pos_x,respawn_pos_y,speed_walk,speed_run,gravity,jump_power,frame_rate_ms,move_rate_ms,jump_height,p_scale=1,interval_time_jump=100) -> None:
         '''
         self.walk_r = Auxiliar.getSurfaceFromSpriteSheet("images/caracters/stink/walk.png",15,1,scale=p_scale)[:12]
         '''
@@ -21,9 +21,10 @@ class Player:
         self.shoot_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Shoot ({0}).png\\",3,flip=True,scale=p_scale,repeat_frame=2)
         self.knife_r = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Melee ({0}).png\\",7,flip=False,scale=p_scale,repeat_frame=1)
         self.knife_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Melee ({0}).png\\",7,flip=True,scale=p_scale,repeat_frame=1)
-
+        self.hit = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Dead ({0}).png\\",4,flip=False,scale=p_scale,repeat_frame=1)
         self.frame = 0
-        
+        self.respawn_pos_x = respawn_pos_x
+        self.respawn_pos_y = respawn_pos_y
         self.score = 0
         self.move_x = 0
         self.move_y = 0
@@ -63,7 +64,7 @@ class Player:
         self.hit_flag = 0
 
         self.score_cooldown = 5000
-        self.lives = 1
+        self.lives = 5
         self.invulnerability_timer = 2000
         self.count_time_col  = 0
         self.time_last_hit = pygame.time.get_ticks()
@@ -156,9 +157,9 @@ class Player:
             if(self.rect.x > -23 and self.rect.x < 1410):
                 #print(self.rect.x)
                 self.change_x(self.move_x)
-            elif(self.rect.x == -23):
+            elif(self.rect.x <= -23):
                 self.change_x(1)
-            else:
+            elif self.rect.x >= 1410:
                 self.change_x(-1)
             self.change_y(self.move_y)
 
@@ -201,22 +202,29 @@ class Player:
     def get_player_score(self):
         return self.player_score
 
-    def draw_player_won(self,screen):
-        won_font = pygame.font.SysFont("segoe print",100)
-        won_text = won_font.render("YOU'VE WON!!",True,(255,0,0))
-        won_score =won_font.render("Your score: {0}".format(self.player_score),True,(255,0,0))
-        play_again_font = pygame.font.SysFont("Verdana",100)
-        play_again_text = play_again_font.render("PLAY AGAIN",True,(100,150,100))
-        self.replay_rect = play_again_font
+    def draw_player_won(self):
         self.winning_state = True
+    
+    def reset(self):
+        self.rect.x = self.respawn_pos_x
+        self.rect.y = self.respawn_pos_y
+        self.collition_rect.x = self.respawn_pos_x+30
+        self.ground_collition_rect.x = self.respawn_pos_x+30
+        self.collition_rect.y = self.respawn_pos_y
+        self.ground_collition_rect.y = self.respawn_pos_y+95
+        self.lives = 5
+        self.score = 0
         
-        screen.blit(won_text,(250,300))
-        screen.blit(won_score,(250,400))
-        screen.blit(play_again_text,(250,500))
-
+    def do_respawn(self):
+        self.rect.x = self.respawn_pos_x
+        self.rect.y = self.respawn_pos_y
+        self.collition_rect.x = self.respawn_pos_x+30
+        self.ground_collition_rect.x = self.respawn_pos_x+30
+        self.collition_rect.y = self.respawn_pos_y
+        self.ground_collition_rect.y = self.respawn_pos_y+95
+    
     def hit_by_enemy(self):
-        
-        # self.count_time_col += 1
+        self.do_respawn()
         last_hit =pygame.time.get_ticks()
         if(last_hit - self.time_last_hit >= self.invulnerability_timer):
             

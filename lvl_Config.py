@@ -14,7 +14,7 @@ class LvlConfig():
                 self.data = self.CargarJson(path_lvl_1)
                 self.__screen = screen_lvl_1_path #constants 
                 self.nivel = "nivel_uno"
-                self.__player = Player(x=10,y=463,speed_walk=8,speed_run=12,gravity=16,jump_power=40,frame_rate_ms=20,move_rate_ms=20,jump_height=150,p_scale=0.2,interval_time_jump=400)
+                self.__player = Player(x=10,y=463,respawn_pos_x=10,respawn_pos_y=600,speed_walk=8,speed_run=12,gravity=16,jump_power=40,frame_rate_ms=20,move_rate_ms=20,jump_height=150,p_scale=0.2,interval_time_jump=400)
             case 2:
                # self.data = self.CargarJson(path_lvl_2)
                # self.__screen = screen_lvl_2_path #constants 
