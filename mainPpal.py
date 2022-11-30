@@ -12,7 +12,7 @@ from fruits import Fruits
 from lvl_Config import LvlConfig
 from gui_form import *
 
-
+print("sss")
 flags = DOUBLEBUF
 
 screen = pygame.display.set_mode((ANCHO_VENTANA,ALTO_VENTANA), flags, 16)
