@@ -63,14 +63,15 @@ class Player:
         self.hit_flag = 0
 
         self.score_cooldown = 5000
-        self.lives = 5
+        self.lives = 1
         self.invulnerability_timer = 2000
         self.count_time_col  = 0
         self.time_last_hit = pygame.time.get_ticks()
         self.time_last_score = pygame.time.get_ticks()
 
+        self.player_dead = False
         self.winning_state = False
-        self.replay_rect = pygame.Rect(0,0,0,0)
+
     def walk(self,direction):
         if(self.direction != direction or (self.animation != self.walk_r and self.animation != self.walk_l)):
             self.frame = 0
@@ -172,15 +173,17 @@ class Player:
 
     def is_on_plataform(self,plataform_list):
         retorno = False
-        
-        if(self.ground_collition_rect.bottom >= GROUND_LEVEL):
-            retorno = True     
-        else:
-            for plataforma in  plataform_list:
-                if(self.ground_collition_rect.colliderect(plataforma.ground_collition_rect)):
-                    retorno = True
-                    break       
-        return retorno                 
+
+        if self.player_dead == False:
+            if(self.ground_collition_rect.bottom >= GROUND_LEVEL):
+                retorno = True     
+            else:
+                for plataforma in  plataform_list:
+                    if(self.ground_collition_rect.colliderect(plataforma.ground_collition_rect)):
+                        retorno = True
+                        break       
+            return retorno  
+        else: return False               
 
     def hit_on_enemy_or_fruit(self,enemy_type="ground_enemy",is_fruit=False):   
         last_score = pygame.time.get_ticks()
@@ -243,8 +246,12 @@ class Player:
             else: 
                 self.frame = 0
     
-    def mouse(self):
-        print("SS")
+    def get_player_lives(self):
+        return self.lives
+
+    def player_is_dead(self):
+        self.player_dead = True
+        return self.player_dead
     # def winning_state(self):
     #     self.speed_walk = 0
     #     self.winning_state = True
@@ -255,16 +262,16 @@ class Player:
         
     
     def draw(self,screen):
-        
-        if(DEBUG):
-            pygame.draw.rect(screen,color=(255,0 ,0),rect=self.collition_rect)
-            pygame.draw.rect(screen,color=(255,255,0),rect=self.ground_collition_rect)
-        lives_in_screen = self.draw_lives()
-        score_in_screen = self.draw_score()
-        self.image = self.animation[self.frame]
-        screen.blit(score_in_screen,(10,10))
-        screen.blit(lives_in_screen,(10,50))
-        screen.blit(self.image,self.rect)
+        if(self.player_dead == False):
+            if(DEBUG):
+                pygame.draw.rect(screen,color=(255,0 ,0),rect=self.collition_rect)
+                pygame.draw.rect(screen,color=(255,255,0),rect=self.ground_collition_rect)
+            lives_in_screen = self.draw_lives()
+            score_in_screen = self.draw_score()
+            self.image = self.animation[self.frame]
+            screen.blit(score_in_screen,(10,10))
+            screen.blit(lives_in_screen,(10,50))
+            screen.blit(self.image,self.rect)
         
 
     def events(self,delta_ms,keys):

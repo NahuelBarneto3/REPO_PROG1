@@ -12,7 +12,7 @@ from fruits import Fruits
 from lvl_Config import LvlConfig
 from gui_form import *
 
-print("sss")
+
 flags = DOUBLEBUF
 
 screen = pygame.display.set_mode((ANCHO_VENTANA,ALTO_VENTANA), flags, 16)
@@ -24,24 +24,7 @@ menu_form = FormMenu(name="menu_form",master_surface=screen,x=0,y=0,active=True,
 option_form = FormOptions(name="option_form",master_surface=screen,x=0,y=0,active=True,lvl=1)
 form_start_lvl = FormLvlStart(name="form_start_lvl",master_surface=screen,x=0,y=0,active=True,lvl=1)
 form_pause = FormPause(name="form_pause",master_surface=screen,x=0,y=0,active=True,lvl=1)
-
-
-#al ser propiedad no lleva parentesis get_lvl_image
-#imagen_fondo = pygame.image.load(config.get_lvl_image).convert()
-
-#imagen_fondo = pygame.transform.scale(imagen_fondo,(ANCHO_VENTANA,ALTO_VENTANA))
-# #ENEMIGOS
-# #ground_enemy_list = config.get_walking_fideitos()
-# att_enemy_list = config.get_att_enemy()
-# #FRUTAS
-# fruits_list = config.get_frutita()
-# #PLAYER
-# player_1 = Player(x=10,y=463,speed_walk=8,speed_run=12,gravity=16,jump_power=30,frame_rate_ms=100,move_rate_ms=50,jump_height=140,p_scale=0.2,interval_time_jump=300)
-# collition = Collition(ground_enemy_list,player_1,att_enemy_list,fruits_list)
-# #PLATAFORMAS
-
-# platform_list = config.get_platforms()
-# enemy_bullet = EnemyFire(bullet_speed=3,firing_cooldown=50,frame_rate_ms=60,b_scale=0.3)
+form_death = FormDeath(name="form_death",master_surface=screen,x=0,y=0,active=True,lvl=1)
 
 
 
@@ -71,6 +54,9 @@ while True:
         option_form.draw()
     elif(form_pause.active):
         form_pause.update(keys)
+        form_pause.draw()
+    elif(form_death.active):
+        form_pause.update(lista_eventos)
         form_pause.draw()
 
 

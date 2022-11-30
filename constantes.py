@@ -5,7 +5,7 @@ pygame.mixer.pre_init()
 mixer.init()
 
 screen_lvl_1_path = r"D:\UTN\Utn Ingreso\Prog\python_prog_I\jueguito\images\locations\mountain\all.png\\"
-path_lvl_1 = r"D:\UTN\Utn Ingreso\Prog\python_prog_I\jueguito\Lvl1\Lvl1.json\\"
+path_lvl_1 = r"D:\UTN\Utn Ingreso\Prog\Juiguito\REPO_PROG1\lvl\Lvl1.json\\"
 
 ANCHO_VENTANA = 1500
 ALTO_VENTANA = 800

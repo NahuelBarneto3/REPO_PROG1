@@ -5,7 +5,7 @@ from plataforma import Plataform
 from enemigo import Enemy
 from Attacking_Enemy import Attacking_Enemy
 from fruits import Fruits
-
+from player import Player
 class LvlConfig():
     def __init__(self,lvl):
         self.lvl = lvl
@@ -14,6 +14,7 @@ class LvlConfig():
                 self.data = self.CargarJson(path_lvl_1)
                 self.__screen = screen_lvl_1_path #constants 
                 self.nivel = "nivel_uno"
+                self.__player = Player(x=10,y=463,speed_walk=8,speed_run=12,gravity=16,jump_power=40,frame_rate_ms=20,move_rate_ms=20,jump_height=150,p_scale=0.2,interval_time_jump=400)
             case 2:
                # self.data = self.CargarJson(path_lvl_2)
                # self.__screen = screen_lvl_2_path #constants 
@@ -69,3 +70,7 @@ class LvlConfig():
     @property
     def get_lvl_image(self):
         return self.__screen
+
+    @property
+    def get_player(self):
+        return self.__player

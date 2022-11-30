@@ -82,7 +82,8 @@ class FormLvlStart(Form):
     def __init__(self,name,master_surface,x,y,active,lvl):
         super().__init__(name,master_surface,x,y,active,lvl)
         self.screen = master_surface
-        self.config = LvlConfig(1)
+        #self.config = LvlConfig(1)
+        self.config()
         self.clock = pygame.time.Clock()
 
         #al ser propiedad no lleva parentesis get_lvl_image
@@ -95,7 +96,7 @@ class FormLvlStart(Form):
         #FRUTAS
         self.fruits_list = self.config.get_frutita()
         #PLAYER
-        self.player_1 = Player(x=10,y=463,speed_walk=8,speed_run=12,gravity=16,jump_power=30,frame_rate_ms=100,move_rate_ms=50,jump_height=140,p_scale=0.2,interval_time_jump=300)
+        self.player_1 = self.config.get_player
         self.collition = Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list)
         #PLATAFORMAS
 
@@ -103,7 +104,8 @@ class FormLvlStart(Form):
         self.enemy_bullet = EnemyFire(bullet_speed=3,firing_cooldown=50,frame_rate_ms=60,b_scale=0.3)
 
 
-
+    def config(self):
+        self.config = LvlConfig(1)
 
 
     def update(self,keys):
@@ -138,7 +140,9 @@ class FormLvlStart(Form):
                 ground_enemy.winning_status()
             for att_enemy in self.att_enemy_list:
                 att_enemy.winning_status() 
-        
+        if(self.player_1.get_player_lives() == 0):          
+            if self.player_1.player_is_dead():
+                self.set_active("form_death")
         self.screen.blit(self.imagen_fondo,self.imagen_fondo.get_rect())
 
     def draw(self):
@@ -208,6 +212,38 @@ class FormPause(Form):
     
     def click_resume(self,parametro):
         self.set_active(parametro)
+
+    def click_music_on(self, parametro):
+        pygame.mixer.music.unpause()
+
+    def click_music_off(self, parametro):
+        pygame.mixer.music.pause()
+
+    def click_back(self,parametro):
+        self.set_active(parametro)
+    
+
+    def update(self, lista_eventos):
+        for aux_boton in self.lista_widget:
+            aux_boton.update(lista_eventos)
+
+    def draw(self): 
+        super().draw()
+        for aux_boton in self.lista_widget:    
+            aux_boton.draw()
+
+class FormDeath(Form):
+    def __init__(self,name,master_surface,x,y,active,lvl):
+        super().__init__(name,master_surface,x,y,active,lvl)
+
+    #self.main_menu_ttl = 
+
+        self.music_on_btn = Button(x=1240,y=ALTO_VENTANA//2-100,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
+        self.music_off_btn = Button(x=1240,y=ALTO_VENTANA//2-200,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
+        self.back_btn = Button(x=1240,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
+
+        self.lista_widget = [self.music_off_btn,self.music_on_btn,self.back_btn]
+
 
     def click_music_on(self, parametro):
         pygame.mixer.music.unpause()
