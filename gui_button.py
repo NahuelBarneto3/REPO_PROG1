@@ -1,7 +1,6 @@
 import pygame
 from pygame.locals import *
 from gui_widget import Widget
-
  
 class Button(Widget):
     def __init__(self,x,y,text,screen,on_click=None,on_click_param=None,font_size=20):
@@ -15,7 +14,8 @@ class Button(Widget):
         self.on_click = on_click
         self.on_click_param = on_click_param
         self._text = text
-                
+        self.last_pressed = pygame.time.get_ticks()
+        self.click_cooldown = 50
     # def render(self):
     #     image_text = self.font_sys.render(self._text,True,self.font_color,self.color_background)
     #     self.slave_surface = pygame.surface.Surface((self.w,self.h))
@@ -29,14 +29,18 @@ class Button(Widget):
     #     self.slave_surface.blit(image_text,(5,5))
     
     
-    def button_pressed(self):
-        mouse_pos = pygame.mouse.get_pos()
-
-        #coll
-        if(self.rect.collidepoint(mouse_pos)):
-            if(pygame.mouse.get_pressed()[0] == 1):
-                self.on_click(self.on_click_param)
-                #poner el play del sonido en el momento que clickea
+    def button_pressed(self):       
+        last_pressed_btn = pygame.time.get_ticks()
+        if(last_pressed_btn - self.last_pressed >= self.click_cooldown):
+            mouse_pos = pygame.mouse.get_pos()
+            self.last_pressed = last_pressed_btn
+            if(self.rect.collidepoint(mouse_pos)):
+                if(pygame.mouse.get_pressed()[0] == 1):
+                    pygame.time.delay(200)
+                    #time.sleep(0.2)
+                    self.on_click(self.on_click_param)
+                    
+                    #poner el play del sonido en el momento que clickea
     '''
     for evento in lista_eventos:
                 if evento.type == pygame.MOUSEBUTTONDOWN:

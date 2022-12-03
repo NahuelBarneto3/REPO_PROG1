@@ -34,14 +34,10 @@ class Form():
     #me activa el forms con el mismo nombre y desactiva los demas
     def set_active(self,name):
         for aux_form in self.forms_dict.values():
-            aux_form.active = False
+            if aux_form.active:
+                aux_form.active = False       
         self.forms_dict[name].active = True
 
-    # def render(self):
-    #     pass
-
-    # def update(self,lista_eventos):
-    #     pass
 
     def draw(self):
         self.master_surface.blit(self.surface,self.slave_rect)
@@ -53,12 +49,12 @@ class FormMenu(Form):
         #self.main_menu_ttl =
 
         
-        self.start_btn = Button(x=ANCHO_VENTANA/1.2,y=ALTO_VENTANA//2-100,text='start',screen=master_surface,on_click=self.click_start,on_click_param="form_start_lvl",font_size=40)
-        self.option_btn = Button(x=ANCHO_VENTANA/1.2,y=ALTO_VENTANA//2-200,text='options',screen=master_surface,on_click=self.click_start,on_click_param="option_form",font_size=40)
-        self.lvl_select_btn = Button(x=ANCHO_VENTANA/1.2,y=ALTO_VENTANA//2-300,text='Seleccionar\n   Nivel',screen=master_surface,on_click=self.click_select_lvl,on_click_param="form_lvl_select",font_size=40)
+        self.start_btn = Button(x=ANCHO_VENTANA/1.25,y=ALTO_VENTANA//2-100,text='start',screen=master_surface,on_click=self.click_start,on_click_param="form_start_lvl",font_size=40)
+        self.option_btn = Button(x=ANCHO_VENTANA/1.25,y=ALTO_VENTANA//2-200,text='options',screen=master_surface,on_click=self.click_start,on_click_param="option_form",font_size=40)
+        self.lvl_select_btn = Button(x=ANCHO_VENTANA/1.25,y=ALTO_VENTANA//2-300,text='Seleccionar Nivel',screen=master_surface,on_click=self.click_select_lvl,on_click_param="form_lvl_select",font_size=40)
         # self.boton1 = Button(master=self,x=100,y=50,w=200,h=50,color_background=(255,0,0),color_border=(255,0,255),on_click=self.on_click_boton1,on_click_param="1234",text="MENU",font="Verdana",font_size=30,font_color=(0,255,0))
         # self.boton2 = Button(master=self,x=200,y=50,w=200,h=50,color_background=(255,0,0),color_border=(255,0,255),on_click=self.on_click_boton1,on_click_param="8",text="MENU 2",font="Verdana",font_size=30,font_color=(0,255,0))
-        self.lista_widget = [self.start_btn,self.option_btn]
+        self.lista_widget = [self.start_btn,self.option_btn,self.lvl_select_btn]
         
     def click_select_lvl(self, parametro):
         self.set_active(parametro)
@@ -84,12 +80,14 @@ class FormMenu(Form):
 class FormLvlStart(Form):
     def __init__(self,name,master_surface,x,y,active,lvl):
         super().__init__(name,master_surface,x,y,active,lvl)
+
         self.lvl = lvl
+
         self.screen = master_surface
         self.config = LvlConfig(self.lvl)
 
         self.clock = pygame.time.Clock()
-
+        
         #al ser propiedad no lleva parentesis get_lvl_image
         self.imagen_fondo = pygame.image.load(self.config.get_lvl_image).convert_alpha()
 
@@ -100,12 +98,13 @@ class FormLvlStart(Form):
         #FRUTAS
         self.fruits_list = self.config.get_frutita()
         #PLAYER
-        self.player_1 = self.config.get_player
-        self.collition = Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list)
-        #PLATAFORMAS
-
+        
         self.platform_list = self.config.get_platforms()
-        self.enemy_bullet = EnemyFire(bullet_speed=3,firing_cooldown=50,frame_rate_ms=60,b_scale=0.3)
+        self.enemy_fire_list = self.config.get_enemy_fire()
+        self.respawn_fire_list = []
+        self.player_1 = self.config.get_player
+        self.collition = Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list)
+        #PLATAFORMAS
 
 
     # def config(self):
@@ -127,18 +126,40 @@ class FormLvlStart(Form):
         for att_enemy_element in self.att_enemy_list:
             att_enemy_element.update(self.delta_ms,self.platform_list)
         
+        #print("FUEGO", len(self.enemy_fire_list))
+        #if len(self.enemy_fire_list) > 0 and len(self.respawn_fire_list) != 3:    
+        for enemy_fire_element in self.enemy_fire_list:               
+            enemy_fire_element.update(self.delta_ms)
+            if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
+                self.enemy_fire_list = self.config.get_enemy_fire()
+                Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list)
+                #enemy_fire_element.is_out_id()
+            # if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
+            #     self.respawn_fire_list = self.enemy_fire_list.pop(enemy_fire_element.is_out_id())
+            #     enemy_fire_element.spawn_bullet()
+        # else:
+        #     for enemy_fire_element2 in self.respawn_fire_list:               
+        #         enemy_fire_element2.update(self.delta_ms)
+        #         if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
+        #             self.enemy_fire_list = self.respawn_fire_list.pop(enemy_fire_element.is_out_id())
+        #             enemy_fire_element.spawn_bullet()
+        
+        print(self.player_1.rect.y)
         self.collition.player_collide_enemy()
         self.collition.enemy_collide_player(self.delta_ms)
         self.collition.att_enemy_sees_player()
         self.collition.player_pick_up_fruit()
-
-        self.enemy_bullet.update(self.delta_ms)             
+        self.collition.player_collides_fire(self.enemy_fire_list)#recibe cada vez el nuevo lugar de memoria en el que se esta alojando 
+                    
 
         self.player_1.events(self.delta_ms,keys)
         self.player_1.update(self.delta_ms,self.platform_list)
 
         
         if(self.player_1.get_player_score() >= 2000):
+            win_fanfare_sound.play()
+            win_fanfare_sound.fadeout(10000)
+            pygame.mixer.music.pause()
         # player_1.winning_state()
             for ground_enemy in self.ground_enemy_list:
                 ground_enemy.winning_status()
@@ -146,6 +167,8 @@ class FormLvlStart(Form):
                 att_enemy.winning_status() 
         if(self.player_1.get_player_lives() == 0):          
             if self.player_1.player_is_dead():
+                death_sound.play()
+                
                 self.set_active("form_death")
                 self.re_init()
         self.screen.blit(self.imagen_fondo,self.imagen_fondo.get_rect())
@@ -164,10 +187,13 @@ class FormLvlStart(Form):
         for att_enemy_element in self.att_enemy_list:
             att_enemy_element.draw(self.screen)
 
-        self.enemy_bullet.draw(self.screen)
+        for enemy_fire_element in self.enemy_fire_list:
+            enemy_fire_element.draw(self.screen)
+            
         self.player_1.draw(self.screen)
-
         if(self.player_1.get_player_score() >= 2000):
+            
+            #
             self.set_active("form_win")
             self.player_1.reset()
             self.re_init()
@@ -189,11 +215,12 @@ class FormLvlStart(Form):
         self.fruits_list = self.config.get_frutita()
         #PLAYER
         self.player_1 = self.config.get_player
-        self.collition = Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list)
+        self.collition = Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list)
         #PLATAFORMAS
 
         self.platform_list = self.config.get_platforms()
-        self.enemy_bullet = EnemyFire(bullet_speed=3,firing_cooldown=50,frame_rate_ms=60,b_scale=0.3)
+        self.enemy_fire_list = self.config.get_enemy_fire()
+
 
 
 
@@ -289,7 +316,7 @@ class FormDeath(Form):
         click_sound.play(0,450,0)
     def click_back(self,parametro):
         self.set_active(parametro)
-    
+        pygame.mixer.music.unpause()
 
     def update(self, lista_eventos):
         for aux_boton in self.lista_widget:
@@ -322,7 +349,8 @@ class FormWin(Form):
 
     def click_back(self,parametro):
         self.set_active(parametro)
-    
+        pygame.mixer.music.unpause()
+        
 
     def update(self, lista_eventos):
         for aux_boton in self.lista_widget:
@@ -333,17 +361,15 @@ class FormWin(Form):
         for aux_boton in self.lista_widget:    
             aux_boton.draw()
 
-class LvlSelect(Form):
+class FormLvlSelect(Form):
     def __init__(self,name,master_surface,x,y,active,lvl):
         super().__init__(name,master_surface,x,y,active,lvl)
 
-        self.lvl1_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2,text='Nivel 1',screen=master_surface,on_click=self.click_lvl1,on_click_param="menu_form",font_size=40)
-        self.lvl2_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2,text='Nivel 2',screen=master_surface,on_click=self.click_lvl2,on_click_param="menu_form",font_size=40)
-        self.lvl3_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2,text='Nivel 3',screen=master_surface,on_click=self.click_lvl3,on_click_param="menu_form",font_size=40)
-        self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2+100,text='Volver',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
-       
-        
-                                                                                                                                                     
+        self.lvl1_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='Nivel 1',screen=master_surface,on_click=self.click_lvl1,on_click_param=1,font_size=40)
+        self.lvl2_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Nivel 2',screen=master_surface,on_click=self.click_lvl2,on_click_param=2,font_size=40)
+        self.lvl3_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Nivel 3',screen=master_surface,on_click=self.click_lvl3,on_click_param=3,font_size=40)
+        self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2,text='Volver',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
+                                                                                                                                                    
         self.lista_widget = [self.lvl1_btn,self.lvl2_btn,self.back_btn,self.lvl3_btn]
     
     
@@ -351,10 +377,10 @@ class LvlSelect(Form):
         self.set_active(parametro)
         click_sound.play(0,450,0)
     def click_lvl2(self, parametro):
-        pygame.mixer.music.unpause()
+        self.set_active(parametro)
         click_sound.play(0,450,0)
     def click_lvl3(self, parametro):
-        pygame.mixer.music.pause()
+        self.set_active(parametro)
         click_sound.play(0,450,0)
     def click_back(self,parametro):
         self.set_active(parametro)

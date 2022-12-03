@@ -63,7 +63,7 @@ class Player:
         self.score_text = 0
         self.hit_flag = 0
 
-        self.score_cooldown = 5000
+        self.score_cooldown = 4000
         self.lives = 5
         self.invulnerability_timer = 2000
         self.count_time_col  = 0
@@ -211,17 +211,17 @@ class Player:
         self.collition_rect.x = self.respawn_pos_x+30
         self.ground_collition_rect.x = self.respawn_pos_x+30
         self.collition_rect.y = self.respawn_pos_y
-        self.ground_collition_rect.y = self.respawn_pos_y+95
+        self.ground_collition_rect.y = self.respawn_pos_y+99
         self.lives = 5
         self.score = 0
-        
+
     def do_respawn(self):
         self.rect.x = self.respawn_pos_x
         self.rect.y = self.respawn_pos_y
         self.collition_rect.x = self.respawn_pos_x+30
         self.ground_collition_rect.x = self.respawn_pos_x+30
         self.collition_rect.y = self.respawn_pos_y
-        self.ground_collition_rect.y = self.respawn_pos_y+95
+        self.ground_collition_rect.y = self.respawn_pos_y+99
     
     def hit_by_enemy(self):
         self.do_respawn()

@@ -7,12 +7,13 @@ from auxiliar import Auxiliar
 
 
 class Collition():
-    def __init__(self,enemy_list,player,att_enemy_list,fruit_list):
+    def __init__(self,enemy_list,player,att_enemy_list,fruit_list,fire_list):
         self.att_enemy_list = att_enemy_list
         self.enemy_list = enemy_list
         self.player = player
         self.fruit_list = fruit_list
-
+        self.fire_list = fire_list
+    
     def player_collide_enemy(self):
 
         for enemy in self.enemy_list: 
@@ -35,6 +36,15 @@ class Collition():
                 frutitas.pick_up_fruit()
                 self.player.hit_on_enemy_or_fruit(is_fruit = True)
 
+    def player_collides_fire(self,fire_list):
+        self.fire_list = fire_list
+        
+        for fire in self.fire_list:
+            if(self.player.rect.colliderect(fire.rect)):
+                
+                fire.is_out_id(hit_player=True)
+                self.player.hit_by_enemy()
+    
     def enemy_collide_player(self,delta_ms):
         for enemy in self.enemy_list:
 

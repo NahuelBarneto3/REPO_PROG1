@@ -364,6 +364,29 @@
                 "move_rate_ms": 100,
                 "f_scale": 0.5 
             }
+        ],
+        "enemy_fire":[
+            {
+                "id_b": 0,
+                "bullet_speed":1,
+                "firing_cd": 5000, 
+                "fr_ms": 30,
+                "b_scale": 0.3
+            },
+            {
+                "id_b": 1,
+                "bullet_speed":3,
+                "firing_cd": 8000, 
+                "fr_ms": 30,
+                "b_scale": 0.3
+            },
+            {
+                "id_b": 2,
+                "bullet_speed": 5,
+                "firing_cd": 20000, 
+                "fr_ms": 30,
+                "b_scale": 0.3
+            }
         ]
     }    
 }

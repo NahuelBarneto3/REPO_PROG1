@@ -1,35 +1,53 @@
 import pygame
 from auxiliar import Auxiliar
 from constantes import *
-
+import random
 class EnemyFire:
-    def __init__(self,bullet_speed,firing_cooldown,frame_rate_ms,b_scale):
+    def __init__(self,id_b,bullet_speed,firing_cd,frame_rate_ms,b_scale):
         self.fire_anim_r = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Objects\Bullet_00{0}.png\\",5,flip=False, scale= b_scale)
         self.fire_anim_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Objects\Bullet_00{0}.png\\",5,flip=True, scale= b_scale)
+        self.id = id_b
         self.animation = self.fire_anim_r
+        self.direction = random.randrange(0,2)
         self.frame = 0
         self.image = self.animation[self.frame]
         self.tiempo_transcurrido_animation = 0
         self.animation = self.fire_anim_r
         self.rect = self.image.get_rect()
-        self.rect.x = 500
-        self.rect.y = 400
-
+        self.rect.x = self.spawn_direction()
+        self.rect.y = random.randrange(0,GROUND_LEVEL-30)
         self.frame_rate_ms = frame_rate_ms
         self.is_alive = True
         self.move_bullet_x = 0
         self.bullet_speed = bullet_speed
-        self.firing_cooldown = firing_cooldown
         self.time_last_fired = 0
+        self.firing_cd = firing_cd
+
+
+    def spawn_direction(self):
+        #print("DIREC",self.direction)
+        if self.direction == DIRECTION_L: #L = 0
+            return ANCHO_VENTANA
+        else: return -23
+            
+
+    def spawn_bullet(self):
+            self.direction = random.randrange(0,2)
+            self.rect.y = random.randrange(10,BULL_SPAWN,20)
+            self.rect.x = self.spawn_direction()
 
     def shoot(self):
         last_fire = pygame.time.get_ticks()
-        if(last_fire - self.time_last_fired >= self.firing_cooldown):
+        if(last_fire - self.time_last_fired >= self.firing_cd):
             self.time_last_fired = last_fire
             self.change_fire_x(self.move_bullet_x)
             #if self.rect.x > self.rect.x:
-            self.move_bullet_x = self.bullet_speed
-            self.animation = self.fire_anim_r 
+            if(self.direction == 1):
+                self.move_bullet_x = self.bullet_speed
+                self.animation = self.fire_anim_r
+            else:
+                self.move_bullet_x = -self.bullet_speed
+                self.animation = self.fire_anim_l
             # else:
             #     self.move_bullet_x = -self.bullet_speed
             #     self.animation = self.fire_anim_l 
@@ -47,10 +65,19 @@ class EnemyFire:
                 #print(self.frame)
             else: 
                 self.frame = 0
-
+    
+    def is_out_id(self,hit_player=False): #tambien lo uso para si pega contra el player
+        if(self.rect.x < OUT_SCREEN_L or self.rect.x > OUT_SCREEN_R or hit_player == True):
+            return self.id
+     
+    
     def update(self,delta_ms):
         self.shoot()
         self.do_animation(delta_ms) 
+        self.time_last_fired = delta_ms
+        if(self.time_last_fired > self.firing_cd):
+            self.time_last_fired = 0
+            self.spawn_bullet()
         
     def draw(self,screen):
         if(self.is_alive == True):
