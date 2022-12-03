@@ -24,7 +24,7 @@ pygame.init()
 
 menu_form = FormMenu(name="menu_form",master_surface=screen,x=0,y=0,active=True,lvl=1)
 option_form = FormOptions(name="option_form",master_surface=screen,x=0,y=0,active=True,lvl=1)
-form_start_lvl = FormLvlStart(name="form_start_lvl",master_surface=screen,x=0,y=0,active=True,lvl=1)
+form_start_lvl = FormLvlStart(name="form_start_lvl",master_surface=screen,x=0,y=0,active=True,lvl=2)
 form_pause = FormPause(name="form_pause",master_surface=screen,x=0,y=0,active=True,lvl=1)
 form_death = FormDeath(name="form_death",master_surface=screen,x=0,y=0,active=True,lvl=1)
 form_win = FormWin(name="form_win",master_surface=screen,x=0,y=0,active=True,lvl=1)
@@ -66,6 +66,11 @@ while True:
     elif(form_lvl_select.active):
         form_lvl_select.update(lista_eventos)
         form_lvl_select.draw()
+        if(form_lvl_select.is_selected):
+            lvl = form_lvl_select.selected_lvl
+            form_lvl_select.is_selected = False
+            form_start_lvl = FormLvlStart(name="form_start_lvl",master_surface=screen,x=0,y=0,active=True,lvl=lvl)
+            
 
 
     # screen.blit(imagen_fondo,imagen_fondo.get_rect())

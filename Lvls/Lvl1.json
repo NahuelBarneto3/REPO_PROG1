@@ -256,7 +256,7 @@
                 "x": 700,
                 "y": 655,
                 "r_limit": 1300,
-                "l_limit": 0,
+                "l_limit": 100,
                 "speed_w": 8,
                 "speed_r": 8,
                 "gravity": 8,
@@ -269,7 +269,7 @@
                 "x": 1200,
                 "y": 655,
                 "r_limit": 1300,
-                "l_limit": 0,
+                "l_limit": 100,
                 "speed_w": 6,
                 "speed_r": 8,
                 "gravity": 8,
@@ -363,6 +363,20 @@
                 "frame_rate_ms" :10,
                 "move_rate_ms": 100,
                 "f_scale": 0.5 
+            },
+            {
+                "x": 650,
+                "y": 650,
+                "frame_rate_ms" :10,
+                "move_rate_ms": 100,
+                "f_scale": 0.5 
+            },
+            {
+                "x": 1300,
+                "y": 650,
+                "frame_rate_ms" :10,
+                "move_rate_ms": 100,
+                "f_scale": 0.5 
             }
         ],
         "enemy_fire":[
@@ -386,6 +400,14 @@
                 "firing_cd": 20000, 
                 "fr_ms": 30,
                 "b_scale": 0.3
+            }
+        ],
+        "exit_gate":[
+            
+            {
+                "x":1300,
+                "y":130,
+                "d_scale":0.3
             }
         ]
     }    

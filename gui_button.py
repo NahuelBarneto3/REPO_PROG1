@@ -30,17 +30,17 @@ class Button(Widget):
     
     
     def button_pressed(self):       
-        last_pressed_btn = pygame.time.get_ticks()
-        if(last_pressed_btn - self.last_pressed >= self.click_cooldown):
-            mouse_pos = pygame.mouse.get_pos()
-            self.last_pressed = last_pressed_btn
-            if(self.rect.collidepoint(mouse_pos)):
-                if(pygame.mouse.get_pressed()[0] == 1):
-                    pygame.time.delay(200)
-                    #time.sleep(0.2)
-                    self.on_click(self.on_click_param)
-                    
-                    #poner el play del sonido en el momento que clickea
+        if(self.on_click_param != None):
+            last_pressed_btn = pygame.time.get_ticks()
+            if(last_pressed_btn - self.last_pressed >= self.click_cooldown):
+                mouse_pos = pygame.mouse.get_pos()
+                self.last_pressed = last_pressed_btn
+                if(self.rect.collidepoint(mouse_pos)):
+                    if(pygame.mouse.get_pressed()[0] == 1):
+                        pygame.time.delay(200)
+                        #time.sleep(0.2)
+                        self.on_click(self.on_click_param)
+        
     '''
     for evento in lista_eventos:
                 if evento.type == pygame.MOUSEBUTTONDOWN:

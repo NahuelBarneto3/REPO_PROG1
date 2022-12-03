@@ -5,8 +5,11 @@ pygame.mixer.pre_init()
 mixer.init()
 
 screen_lvl_1_path = r"D:\UTN\Utn Ingreso\Prog\python_prog_I\jueguito\images\locations\mountain\all.png\\"
-path_lvl_1 = r"D:\UTN\Utn Ingreso\Prog\jueguito2\REPO_PROG1\Lvl1\Lvl1.json\\"
-
+path_lvl_1 = r"D:\UTN\Utn Ingreso\Prog\jueguito2\REPO_PROG1\Lvls\Lvl1.json\\"
+path_platforms_lvl_1 =r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\tileset\forest\Tiles"
+screen_lvl_2_path = r"D:\UTN\Utn Ingreso\Prog\python_prog_I\jueguito\images\locations\city\all.png\\"
+path_lvl_2 = r"D:\UTN\Utn Ingreso\Prog\jueguito2\REPO_PROG1\Lvls\Lvl2.json\\"
+path_platforms_lvl_2 =r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\tileset\space_ship\Tiles"
 ANCHO_VENTANA = 1500
 ALTO_VENTANA = 800
 GROUND_LEVEL = 705
@@ -16,8 +19,10 @@ PATH_IMAGE = r"D:\UTN\Utn Ingreso\Prog\python_prog_I\jueguito\images\\"
 DIRECTION_L = 0
 DIRECTION_R = 1
 GROUND_COLLIDE_H = 8 # Aprox Gravedad/2 + 1
-DEBUG = True
-BULL_SPAWN = GROUND_LEVEL-200
+
+DEBUG = False
+
+BULL_SPAWN_Y = GROUND_LEVEL-200
 OUT_SCREEN_R = 1600
 OUT_SCREEN_L = -100
 

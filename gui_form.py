@@ -115,36 +115,38 @@ class FormLvlStart(Form):
         
         self.delta_ms = self.clock.tick(FPS)
 
-        
-        for frutita in self.fruits_list:
-            frutita.update(self.delta_ms)
+        if self.fruits_list!=None:
+            for frutita in self.fruits_list:
+                frutita.update(self.delta_ms)
+       
+        if self.ground_enemy_list!=None:
+            for enemy_element in self.ground_enemy_list:
+                enemy_element.update(self.delta_ms,self.platform_list)
 
-        for enemy_element in self.ground_enemy_list:
-            enemy_element.update(self.delta_ms,self.platform_list)
-
+        if self.att_enemy_list:
+            for att_enemy_element in self.att_enemy_list:
+                att_enemy_element.update(self.delta_ms,self.platform_list)
             
-        for att_enemy_element in self.att_enemy_list:
-            att_enemy_element.update(self.delta_ms,self.platform_list)
-        
         #print("FUEGO", len(self.enemy_fire_list))
         #if len(self.enemy_fire_list) > 0 and len(self.respawn_fire_list) != 3:    
-        for enemy_fire_element in self.enemy_fire_list:               
-            enemy_fire_element.update(self.delta_ms)
-            if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
-                self.enemy_fire_list = self.config.get_enemy_fire()
-                Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list)
-                #enemy_fire_element.is_out_id()
-            # if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
-            #     self.respawn_fire_list = self.enemy_fire_list.pop(enemy_fire_element.is_out_id())
-            #     enemy_fire_element.spawn_bullet()
-        # else:
-        #     for enemy_fire_element2 in self.respawn_fire_list:               
-        #         enemy_fire_element2.update(self.delta_ms)
-        #         if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
-        #             self.enemy_fire_list = self.respawn_fire_list.pop(enemy_fire_element.is_out_id())
-        #             enemy_fire_element.spawn_bullet()
+        if self.enemy_fire_list != None:
+            for enemy_fire_element in self.enemy_fire_list:               
+                enemy_fire_element.update(self.delta_ms)
+                if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
+                    self.enemy_fire_list = self.config.get_enemy_fire()
+                    Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list)
+                    #enemy_fire_element.is_out_id()
+                # if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
+                #     self.respawn_fire_list = self.enemy_fire_list.pop(enemy_fire_element.is_out_id())
+                #     enemy_fire_element.spawn_bullet()
+            # else:
+            #     for enemy_fire_element2 in self.respawn_fire_list:               
+            #         enemy_fire_element2.update(self.delta_ms)
+            #         if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
+            #             self.enemy_fire_list = self.respawn_fire_list.pop(enemy_fire_element.is_out_id())
+            #             enemy_fire_element.spawn_bullet()
         
-        print(self.player_1.rect.y)
+        #print(self.player_1.rect.y)
         self.collition.player_collide_enemy()
         self.collition.enemy_collide_player(self.delta_ms)
         self.collition.att_enemy_sees_player()
@@ -177,18 +179,18 @@ class FormLvlStart(Form):
         
         for plataforma in self.platform_list:
             plataforma.draw(self.screen)
-
-        for frutita in self.fruits_list:
-            frutita.draw(self.screen)
-
-        for enemy_element in self.ground_enemy_list:
-            enemy_element.draw(self.screen)
-
-        for att_enemy_element in self.att_enemy_list:
-            att_enemy_element.draw(self.screen)
-
-        for enemy_fire_element in self.enemy_fire_list:
-            enemy_fire_element.draw(self.screen)
+        if(self.fruits_list != None):
+            for frutita in self.fruits_list:
+                frutita.draw(self.screen)
+        if(self.ground_enemy_list != None):
+            for enemy_element in self.ground_enemy_list:
+                enemy_element.draw(self.screen)
+        if(self.att_enemy_list != None):
+            for att_enemy_element in self.att_enemy_list:
+                att_enemy_element.draw(self.screen)
+        if(self.enemy_fire_list != None):
+            for enemy_fire_element in self.enemy_fire_list:
+                enemy_fire_element.draw(self.screen)
             
         self.player_1.draw(self.screen)
         if(self.player_1.get_player_score() >= 2000):
@@ -364,10 +366,11 @@ class FormWin(Form):
 class FormLvlSelect(Form):
     def __init__(self,name,master_surface,x,y,active,lvl):
         super().__init__(name,master_surface,x,y,active,lvl)
-
-        self.lvl1_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='Nivel 1',screen=master_surface,on_click=self.click_lvl1,on_click_param=1,font_size=40)
-        self.lvl2_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Nivel 2',screen=master_surface,on_click=self.click_lvl2,on_click_param=2,font_size=40)
-        self.lvl3_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Nivel 3',screen=master_surface,on_click=self.click_lvl3,on_click_param=3,font_size=40)
+        self.selected_lvl = lvl
+        self.is_selected = False
+        self.lvl1_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='Nivel 1',screen=master_surface,on_click=self.click_lvl1,on_click_param="form_start_lvl",font_size=40)
+        self.lvl2_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Nivel 2',screen=master_surface,on_click=self.click_lvl2,on_click_param="form_start_lvl",font_size=40)
+        self.lvl3_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Nivel 3',screen=master_surface,on_click=self.click_lvl3,on_click_param="form_start_lvl",font_size=40)
         self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2,text='Volver',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
                                                                                                                                                     
         self.lista_widget = [self.lvl1_btn,self.lvl2_btn,self.back_btn,self.lvl3_btn]
@@ -376,12 +379,18 @@ class FormLvlSelect(Form):
     def click_lvl1(self,parametro):
         self.set_active(parametro)
         click_sound.play(0,450,0)
+        self.selected_lvl = 1
+        self.is_selected = True
     def click_lvl2(self, parametro):
         self.set_active(parametro)
         click_sound.play(0,450,0)
+        self.selected_lvl = 2
+        self.is_selected = True
     def click_lvl3(self, parametro):
         self.set_active(parametro)
         click_sound.play(0,450,0)
+        self.selected_lvl = 3
+        self.is_selected = True
     def click_back(self,parametro):
         self.set_active(parametro)
     

@@ -15,7 +15,7 @@ class EnemyFire:
         self.animation = self.fire_anim_r
         self.rect = self.image.get_rect()
         self.rect.x = self.spawn_direction()
-        self.rect.y = random.randrange(0,GROUND_LEVEL-30)
+        self.rect.y = random.randrange(0,BULL_SPAWN_Y)
         self.frame_rate_ms = frame_rate_ms
         self.is_alive = True
         self.move_bullet_x = 0
@@ -27,13 +27,13 @@ class EnemyFire:
     def spawn_direction(self):
         #print("DIREC",self.direction)
         if self.direction == DIRECTION_L: #L = 0
-            return ANCHO_VENTANA
-        else: return -23
+            return OUT_SCREEN_R
+        else: return OUT_SCREEN_L
             
 
     def spawn_bullet(self):
             self.direction = random.randrange(0,2)
-            self.rect.y = random.randrange(10,BULL_SPAWN,20)
+            self.rect.y = random.randrange(10,BULL_SPAWN_Y,20)
             self.rect.x = self.spawn_direction()
 
     def shoot(self):
