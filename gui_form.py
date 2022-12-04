@@ -97,13 +97,14 @@ class FormLvlStart(Form):
         self.att_enemy_list = self.config.get_att_enemy()
         #FRUTAS
         self.fruits_list = self.config.get_frutita()
+        self.key_list = self.config.get_keys()
         #PLAYER
         
         self.platform_list = self.config.get_platforms()
         self.enemy_fire_list = self.config.get_enemy_fire()
         self.respawn_fire_list = []
         self.player_1 = self.config.get_player
-        self.collition = Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list)
+        self.collition = Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list,self.platform_list)
         #PLATAFORMAS
 
 
@@ -114,16 +115,21 @@ class FormLvlStart(Form):
     def update(self,keys):
         
         self.delta_ms = self.clock.tick(FPS)
-
+        for platform in self.platform_list:
+            platform.update(self.delta_ms)
         if self.fruits_list!=None:
             for frutita in self.fruits_list:
                 frutita.update(self.delta_ms)
+
+        if self.key_list!=None:
+            for keys in self.key_list:
+                keys.update(self.delta_ms)
        
         if self.ground_enemy_list!=None:
             for enemy_element in self.ground_enemy_list:
                 enemy_element.update(self.delta_ms,self.platform_list)
 
-        if self.att_enemy_list:
+        if self.att_enemy_list!=None:
             for att_enemy_element in self.att_enemy_list:
                 att_enemy_element.update(self.delta_ms,self.platform_list)
             
@@ -134,7 +140,7 @@ class FormLvlStart(Form):
                 enemy_fire_element.update(self.delta_ms)
                 if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
                     self.enemy_fire_list = self.config.get_enemy_fire()
-                    Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list)
+                    Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list,self.platform_list)
                     #enemy_fire_element.is_out_id()
                 # if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
                 #     self.respawn_fire_list = self.enemy_fire_list.pop(enemy_fire_element.is_out_id())
@@ -152,7 +158,7 @@ class FormLvlStart(Form):
         self.collition.att_enemy_sees_player()
         self.collition.player_pick_up_fruit()
         self.collition.player_collides_fire(self.enemy_fire_list)#recibe cada vez el nuevo lugar de memoria en el que se esta alojando 
-                    
+        self.collition.player_hit_acid()
 
         self.player_1.events(self.delta_ms,keys)
         self.player_1.update(self.delta_ms,self.platform_list)
@@ -217,11 +223,13 @@ class FormLvlStart(Form):
         self.fruits_list = self.config.get_frutita()
         #PLAYER
         self.player_1 = self.config.get_player
-        self.collition = Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list)
+        
         #PLATAFORMAS
 
         self.platform_list = self.config.get_platforms()
         self.enemy_fire_list = self.config.get_enemy_fire()
+
+        self.collition = Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list,self.platform_list)
 
 
 
@@ -381,6 +389,7 @@ class FormLvlSelect(Form):
         click_sound.play(0,450,0)
         self.selected_lvl = 1
         self.is_selected = True
+
     def click_lvl2(self, parametro):
         self.set_active(parametro)
         click_sound.play(0,450,0)

@@ -30,6 +30,10 @@ class Fruits:
         self.contador = 0
         self.picked_up = False
 
+        
+    def change_y(self,delta_y):
+        self.rect.y += delta_y
+        
     def do_animation(self,delta_ms):
         self.tiempo_transcurrido_move += delta_ms
         if(self.tiempo_transcurrido_move >= self.move_rate_ms):
@@ -49,8 +53,6 @@ class Fruits:
                     self.go_up = True
                     self.contador = 0
 
-    def change_y(self,delta_y):
-        self.rect.y += delta_y
 
     def pick_up_fruit(self):
         self.rect = pygame.Rect(0,0,0,0)

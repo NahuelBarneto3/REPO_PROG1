@@ -69,7 +69,7 @@ class Player:
         self.count_time_col  = 0
         self.time_last_hit = pygame.time.get_ticks()
         self.time_last_score = pygame.time.get_ticks()
-
+        
         self.player_dead = False
         self.winning_state = False
 
@@ -180,9 +180,14 @@ class Player:
                 retorno = True     
             else:
                 for plataforma in  plataform_list:
-                    if(self.ground_collition_rect.colliderect(plataforma.ground_collition_rect)):
+                    if(self.ground_collition_rect.colliderect(plataforma.ground_collition_rect) and plataforma.type != 14):
                         retorno = True
-                        break       
+                        #print("a")
+                        break
+                    elif(self.ground_collition_rect.colliderect(plataforma.ground_collition_rect)) and plataforma.type == 14:     
+                        #print("b")
+                        retorno = True
+                        self.change_y(plataforma.return_y())
             return retorno  
         else: return False               
 
@@ -191,7 +196,7 @@ class Player:
         if(is_fruit == False):
             if(last_score - self.time_last_score >= self.score_cooldown):
                 if(enemy_type == "att_enemy"):
-                    self.player_score += 1500
+                    self.player_score += 1
                     self.time_last_score = last_score
                 else:
                     self.player_score += 500
@@ -214,6 +219,7 @@ class Player:
         self.ground_collition_rect.y = self.respawn_pos_y+99
         self.lives = 5
         self.score = 0
+
 
     def do_respawn(self):
         self.rect.x = self.respawn_pos_x

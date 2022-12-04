@@ -18,9 +18,9 @@ FPS = 60
 PATH_IMAGE = r"D:\UTN\Utn Ingreso\Prog\python_prog_I\jueguito\images\\"
 DIRECTION_L = 0
 DIRECTION_R = 1
-GROUND_COLLIDE_H = 8 # Aprox Gravedad/2 + 1
+GROUND_COLLIDE_H = 10 # Aprox Gravedad/2 + 1
 
-DEBUG = False
+DEBUG = True
 
 BULL_SPAWN_Y = GROUND_LEVEL-200
 OUT_SCREEN_R = 1600
@@ -28,7 +28,7 @@ OUT_SCREEN_L = -100
 
 menu_music =pygame.mixer.music.load(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\WAV\Persona5OST.wav\\")
 menu_music =pygame.mixer.music.play(0,0,4000)
-menu_music =pygame.mixer.music.set_volume(0.2)
+menu_music =pygame.mixer.music.set_volume(0)
 death_sound = pygame.mixer.Sound(r'D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\WAV\enemydie.wav\\') 
 death_sound.set_volume(0.2)
 fruit_pick_up_sound = pygame.mixer.Sound(r'D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\WAV\comida.wav\\')

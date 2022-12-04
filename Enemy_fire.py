@@ -32,7 +32,7 @@ class EnemyFire:
             
 
     def spawn_bullet(self):
-            self.direction = random.randrange(0,2)
+            self.direction = random.randrange(0,2) #desde el 0 hasta el valor dado sin contarlo
             self.rect.y = random.randrange(10,BULL_SPAWN_Y,20)
             self.rect.x = self.spawn_direction()
 

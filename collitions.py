@@ -7,13 +7,14 @@ from auxiliar import Auxiliar
 
 
 class Collition():
-    def __init__(self,enemy_list,player,att_enemy_list,fruit_list,fire_list):
+    def __init__(self,enemy_list,player,att_enemy_list,fruit_list,fire_list,platform_list):
         self.att_enemy_list = att_enemy_list
         self.enemy_list = enemy_list
         self.player = player
         self.fruit_list = fruit_list
         self.fire_list = fire_list
-    
+        self.platform_list = platform_list
+
     def player_collide_enemy(self):
         
         if(self.enemy_list != None):
@@ -69,6 +70,8 @@ class Collition():
                     return True
     
     def player_hit_acid(self):
-        pass
+        for platform in self.platform_list:
+            if(self.player.rect.colliderect(platform.spyke_rect)):
+                self.player.hit_by_enemy()
        
                 

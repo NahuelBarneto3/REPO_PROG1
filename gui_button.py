@@ -30,7 +30,7 @@ class Button(Widget):
     
     
     def button_pressed(self):       
-        if(self.on_click_param != None):
+
             last_pressed_btn = pygame.time.get_ticks()
             if(last_pressed_btn - self.last_pressed >= self.click_cooldown):
                 mouse_pos = pygame.mouse.get_pos()
