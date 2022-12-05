@@ -97,7 +97,7 @@ class FormLvlStart(Form):
         self.att_enemy_list = self.config.get_att_enemy()
         #FRUTAS
         self.fruits_list = self.config.get_frutita()
-        self.key_list = self.config.get_keys()
+        #self.key_list = self.config.get_keys()
         #PLAYER
         
         self.platform_list = self.config.get_platforms()
@@ -121,9 +121,9 @@ class FormLvlStart(Form):
             for frutita in self.fruits_list:
                 frutita.update(self.delta_ms)
 
-        if self.key_list!=None:
-            for keys in self.key_list:
-                keys.update(self.delta_ms)
+        # if self.key_list!=None:
+        #     for keys in self.key_list:
+        #         keys.update(self.delta_ms)
        
         if self.ground_enemy_list!=None:
             for enemy_element in self.ground_enemy_list:
@@ -175,7 +175,7 @@ class FormLvlStart(Form):
                 att_enemy.winning_status() 
         if(self.player_1.get_player_lives() == 0):          
             if self.player_1.player_is_dead():
-                death_sound.play()
+                death_sound.fadeout(5000)
                 
                 self.set_active("form_death")
                 self.re_init()

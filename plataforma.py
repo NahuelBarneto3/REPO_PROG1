@@ -7,7 +7,7 @@ import random
 class Plataform:
     def __init__(self,path, x, y,width, height,  type=1,move_rate_ms=20, go_up= True):
         self.path = path
-        self.image_list= Auxiliar.getSurfaceFromSeparateFiles(path+r"\{0}.png\\",18,flip=False,w=width,h=height)
+        self.image_list= Auxiliar.getSurfaceFromSeparateFiles(path+r"\{0}.png\\",19,flip=False,w=width,h=height)
         self.type = type
         self.image = self.image_list[type]
         self.rect = self.image.get_rect()
@@ -19,6 +19,7 @@ class Plataform:
         self.ground_collition_rect = pygame.Rect(self.rect)
         self.ground_collition_rect.height = GROUND_COLLIDE_H
         self.spyke_rect = pygame.Rect(0,0,0,0)
+        self.acid_rect = pygame.Rect(0,0,0,0)
         self.tiempo_transcurrido_move = 0
         self.speed_move = 1
         self.move_rate_ms = move_rate_ms
@@ -26,12 +27,16 @@ class Plataform:
         self.contador = 0
 
         if self.type == 16 or self.type == 17:
+            self.collition_rect = pygame.Rect(0,0,0,0)
             self.ground_collition_rect = pygame.Rect(0,0,0,0)
             self.acid_rect = pygame.Rect(self.rect)
-        if self.type == 15:
+        if self.type == 15 or self.type == 18:
+            self.collition_rect = pygame.Rect(0,0,0,0)
             self.ground_collition_rect = pygame.Rect(0,0,0,0)
-            self.spyke_rect = pygame.Rect(x+self.rect.w/4,y+self.rect.h/2,self.rect.w/2,self.rect.h/2)
-
+            self.spyke_rect = pygame.Rect(0,0,0,0)
+        # if self.type == 18:
+        #     self.ground_collition_rect = pygame.Rect(0,0,0,0)
+        #     self.spyke_rect = pygame.Rect(x+self.rect.w/8,y+self.rect.h/4,self.rect.w/1.3,self.rect.h/1.3)
 
     def do_animation(self,delta_ms):
         if self.path != r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\tileset\forest\Tiles":
@@ -93,7 +98,7 @@ class Plataform:
             pygame.draw.rect(screen,color=(255,255,0),rect=self.ground_collition_rect)
             if self.type == 16 or self.type == 17:
                 pygame.draw.rect(screen,color=(0,0,255),rect=self.acid_rect)
-            elif self.type == 15:
+            elif self.type == 15 or self.type == 18:
                 pygame.draw.rect(screen,color=(0,0,255),rect=self.spyke_rect)
 
         #queda para despues las animaciones

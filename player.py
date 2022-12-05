@@ -69,7 +69,8 @@ class Player:
         self.count_time_col  = 0
         self.time_last_hit = pygame.time.get_ticks()
         self.time_last_score = pygame.time.get_ticks()
-        
+        self.keys_picked_up = 0
+
         self.player_dead = False
         self.winning_state = False
 
@@ -190,6 +191,8 @@ class Player:
                         self.change_y(plataforma.return_y())
             return retorno  
         else: return False               
+    def grabs_key(self):
+        self.keys_picked_up += 1
 
     def hit_on_enemy_or_fruit(self,enemy_type="ground_enemy",is_fruit=False):   
         last_score = pygame.time.get_ticks()
@@ -219,6 +222,7 @@ class Player:
         self.ground_collition_rect.y = self.respawn_pos_y+99
         self.lives = 5
         self.score = 0
+        self.keys_picked_up = 0
 
 
     def do_respawn(self):
@@ -259,7 +263,9 @@ class Player:
                 #print(self.frame)
             else: 
                 self.frame = 0
-    
+    def get_player_keys(self):
+        return self.keys_picked_up
+        
     def get_player_lives(self):
         return self.lives
 

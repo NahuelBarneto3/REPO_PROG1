@@ -7,6 +7,8 @@ from Attacking_Enemy import Attacking_Enemy
 from fruits import Fruits
 from player import Player
 from Enemy_fire import EnemyFire
+from key import Key
+from exit_gate import Door
 class LvlConfig():
     def __init__(self,lvl):
         self.lvl = lvl
@@ -30,7 +32,27 @@ class LvlConfig():
         with open(file, 'r') as f:
             self.data = json.load(f)
         return self.data
-    
+    # def get_door(self):
+    #     exit_gate_list_dic = self.data[self.nivel]["exit_gate"]
+    #     self.door_list = []
+        
+    #     if(len(exit_gate_list_dic) != 0):
+    #         for door in exit_gate_list_dic:
+    #             door_to_list = Door(x=door["x"],y=door["y"],frame_rate_ms=door["frame_rate_ms"],move_rate_ms=door["move_rate_ms"],d_scale=door["d_scale"])
+    #             self.door_list.append(door_to_list)
+
+    #         return self.door_list
+    # def get_keys(self):
+    #     keys_list_dic = self.data[self.nivel]["keys"]
+    #     self.keys_list = []
+        
+    #     if(len(keys_list_dic) != 0):
+    #         for keys in keys_list_dic:
+    #             keys_to_list = Key(x=keys["x"],y=keys["y"],frame_rate_ms=keys["frame_rate_ms"],move_rate_ms=keys["move_rate_ms"],f_scale=keys["f_scale"])
+    #             self.keys_list.append(keys_to_list)
+
+    #         return self.keys_list
+
     def get_platforms(self):
         
         platforms_list_dic = self.data[self.nivel]["platforms"]

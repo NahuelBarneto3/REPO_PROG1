@@ -39,4 +39,5 @@ win_fanfare_sound = pygame.mixer.Sound(r'D:\UTN\Utn Ingreso\Prog\python_prog_I\a
 win_fanfare_sound.set_volume(0.1)
 death_sound = pygame.mixer.Sound(r'D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\WAV\a-comerlaa.wav\\')
 death_sound.set_volume(0.1)
-
+door_sound = pygame.mixer.Sound(r'D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\WAV\door.wav\\')
+door_sound.set_volume(0.3)

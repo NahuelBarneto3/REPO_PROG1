@@ -418,8 +418,58 @@
                 "width": 50,
                 "heigth": 50,
                 "type": 12           
-            }
+            },
 
+            {
+                "x": 510,
+                "y": 560,
+                "width": 50,
+                "heigth": 50,
+                "type": 11           
+            },
+            {
+                "x": 560,
+                "y": 560,
+                "width": 50,
+                "heigth": 50,
+                "type": 12           
+            },
+            {
+                "x": 610,
+                "y": 560,
+                "width": 50,
+                "heigth": 50,
+                "type": 12           
+            },
+            {
+                "x": 660,
+                "y": 560,
+                "width": 50,
+                "heigth": 50,
+                "type": 12           
+            },
+            {
+                "x": 710,
+                "y": 560,
+                "width": 50,
+                "heigth": 50,
+                "type": 13           
+            },
+            {
+                "x": 590,
+                "y": 530,
+                "width": 30,
+                "heigth": 30,
+                "type": 18           
+            },
+            {
+                "x": 620,
+                "y": 530,
+                "width": 30,
+                "heigth": 30,
+                "type": 18           
+            }
+            
 
         ],
         "ground_enemy":[
@@ -431,7 +481,7 @@
         "frutifrutona":[
             {
                 "x": 343,
-                "y": 525,
+                "y": 520,
                 "frame_rate_ms" :10,
                 "move_rate_ms": 100,
                 "f_scale": 0.5 
@@ -442,20 +492,21 @@
         ],
         "keys":[
             {
-                "x": 1300,
-                "y": 650,
+                "x": 200,
+                "y": 400,
                 "frame_rate_ms" :10,
                 "move_rate_ms": 100,
-                "f_scale": 0.5 
+                "f_scale": 1
             }
         ],
 
-        "exit_gate":[
-            
+        "exit_gate":[       
             {
-                "x":1300,
-                "y":130,
-                "d_scale":0.3
+                "x":690,
+                "y":490,
+                "frame_rate_ms":10,
+                "move_rate_ms":100,
+                "d_scale":0.5
             }
         ]
     }    

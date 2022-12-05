@@ -14,7 +14,8 @@ class Collition():
         self.fruit_list = fruit_list
         self.fire_list = fire_list
         self.platform_list = platform_list
-
+        # self.key_list = key_list
+        # self.door_list = door_list
     def player_collide_enemy(self):
         
         if(self.enemy_list != None):
@@ -71,7 +72,27 @@ class Collition():
     
     def player_hit_acid(self):
         for platform in self.platform_list:
-            if(self.player.rect.colliderect(platform.spyke_rect)):
+            if(self.player.rect.colliderect(platform.acid_rect)):
+                print("acid")
                 self.player.hit_by_enemy()
        
-                
+    def player_hit_spyke(self):
+
+        for platform in self.platform_list:
+            if(self.player.rect.colliderect(platform.spyke_rect)):
+                print("spyke")
+                self.player.hit_by_enemy()
+
+    # def player_gets_key(self):
+    #     if(self.key_list != None):
+    #         for keys in self.key_list:
+    #             if(self.player.rect.colliderect(keys.rect)):
+    #                 keys.pick_up_key()
+    #                 self.player.grabs_key()
+    
+    # def player_in_door(self):
+    #     if(self.door_list != None):
+    #         for door in self.door_list:
+    #             if(self.player.rect.colliderect(door.rect)):
+    #                 return True
+    #             else: return False
