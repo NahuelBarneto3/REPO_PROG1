@@ -15,7 +15,7 @@ class LvlConfig():
         match(self.lvl):
             case 1:
                 self.data = self.CargarJson(path_lvl_1)
-                self.__screen = screen_lvl_1_path #constants 
+                self.__screen = screen_lvl_1_path #constants #self.get_screen()
                 self.nivel = "nivel_uno"
                 self.__player = Player(x=10,y=463,respawn_pos_x=10,respawn_pos_y=600,speed_walk=8,speed_run=12,gravity=16,jump_power=40,frame_rate_ms=20,move_rate_ms=20,jump_height=150,p_scale=0.2,interval_time_jump=400)
                 self.tiles = path_platforms_lvl_1            
@@ -23,7 +23,8 @@ class LvlConfig():
                 self.data = self.CargarJson(path_lvl_2)
                 self.__screen = screen_lvl_2_path #constants 
                 self.nivel = "nivel_dos"
-                self.__player = Player(x=10,y=290,respawn_pos_x=10,respawn_pos_y=295,speed_walk=8,speed_run=12,gravity=16,jump_power=40,frame_rate_ms=20,move_rate_ms=20,jump_height=150,p_scale=0.2,interval_time_jump=400)
+                self.__player = Player(x=10,y=295,respawn_pos_x=10,respawn_pos_y=295,speed_walk=8,speed_run=12,gravity=16,jump_power=40,frame_rate_ms=20,move_rate_ms=20,jump_height=150,p_scale=0.2,interval_time_jump=400)
+                #10 #290
                 self.tiles = path_platforms_lvl_2
                 pass
 
@@ -32,26 +33,31 @@ class LvlConfig():
         with open(file, 'r') as f:
             self.data = json.load(f)
         return self.data
-    # def get_door(self):
-    #     exit_gate_list_dic = self.data[self.nivel]["exit_gate"]
-    #     self.door_list = []
-        
-    #     if(len(exit_gate_list_dic) != 0):
-    #         for door in exit_gate_list_dic:
-    #             door_to_list = Door(x=door["x"],y=door["y"],frame_rate_ms=door["frame_rate_ms"],move_rate_ms=door["move_rate_ms"],d_scale=door["d_scale"])
-    #             self.door_list.append(door_to_list)
+    
+    # def get_screen(self):
+    #     screen= self.data[self.nivel]["screen"]
+    #     return screen
 
-    #         return self.door_list
-    # def get_keys(self):
-    #     keys_list_dic = self.data[self.nivel]["keys"]
-    #     self.keys_list = []
+    def get_door(self):
+        exit_gate_list_dic = self.data[self.nivel]["exit_gate"]
+        self.door_list = []
         
-    #     if(len(keys_list_dic) != 0):
-    #         for keys in keys_list_dic:
-    #             keys_to_list = Key(x=keys["x"],y=keys["y"],frame_rate_ms=keys["frame_rate_ms"],move_rate_ms=keys["move_rate_ms"],f_scale=keys["f_scale"])
-    #             self.keys_list.append(keys_to_list)
+        if(len(exit_gate_list_dic) != 0):
+            for door in exit_gate_list_dic:
+                door_to_list = Door(x=door["x"],y=door["y"],frame_rate_ms=door["frame_rate_ms"],move_rate_ms=door["move_rate_ms"],d_scale=door["d_scale"])
+                self.door_list.append(door_to_list)
 
-    #         return self.keys_list
+            return self.door_list
+    def get_keys(self):
+        keys_list_dic = self.data[self.nivel]["keys"]
+        self.keys_list = []
+        
+        if(len(keys_list_dic) != 0):
+            for keys in keys_list_dic:
+                keys_to_list = Key(x=keys["x"],y=keys["y"],frame_rate_ms=keys["frame_rate_ms"],move_rate_ms=keys["move_rate_ms"],f_scale=keys["f_scale"])
+                self.keys_list.append(keys_to_list)
+
+            return self.keys_list
 
     def get_platforms(self):
         

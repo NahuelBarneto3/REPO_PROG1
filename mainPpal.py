@@ -32,6 +32,7 @@ form_lvl_select = FormLvlSelect(name="form_lvl_select",master_surface=screen,x=0
 
 
 while True:     
+    
     lista_eventos = pygame.event.get()
     for event in lista_eventos:
         if event.type == pygame.QUIT:
@@ -48,6 +49,7 @@ while True:
     if(menu_form.active):
         menu_form.update(lista_eventos)
         menu_form.draw()
+
     elif(form_start_lvl.active):
         form_start_lvl.update(keys)
         form_start_lvl.draw()
@@ -70,7 +72,7 @@ while True:
             lvl = form_lvl_select.selected_lvl
             form_lvl_select.is_selected = False
             form_start_lvl = FormLvlStart(name="form_start_lvl",master_surface=screen,x=0,y=0,active=True,lvl=lvl)
-            
+        
 
 
     # screen.blit(imagen_fondo,imagen_fondo.get_rect())

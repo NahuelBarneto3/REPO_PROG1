@@ -181,14 +181,19 @@ class Player:
                 retorno = True     
             else:
                 for plataforma in  plataform_list:
-                    if(self.ground_collition_rect.colliderect(plataforma.ground_collition_rect) and plataforma.type != 14):
+                    if(self.ground_collition_rect.colliderect(plataforma.ground_collition_rect) and plataforma.type != MOVING_Y_PLATFORM and plataforma.type != MOVING_X_PLATFORM and plataforma.type != WALL_FACING_L ):
                         retorno = True
-                        #print("a")
+
                         break
-                    elif(self.ground_collition_rect.colliderect(plataforma.ground_collition_rect)) and plataforma.type == 14:     
-                        #print("b")
+                    elif(self.ground_collition_rect.colliderect(plataforma.ground_collition_rect) and plataforma.type == MOVING_Y_PLATFORM):     
+
                         retorno = True
                         self.change_y(plataforma.return_y())
+                    elif(self.ground_collition_rect.colliderect(plataforma.ground_collition_rect) and plataforma.type == MOVING_X_PLATFORM):
+                        retorno = True
+                        self.change_x(plataforma.return_x())
+                    elif(self.rect.colliderect(plataforma.wall_rect) and plataforma.type == WALL_FACING_L):
+                        self.change_x(5)
             return retorno  
         else: return False               
     def grabs_key(self):

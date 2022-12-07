@@ -10,10 +10,19 @@ path_platforms_lvl_1 =r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\tileset\for
 screen_lvl_2_path = r"D:\UTN\Utn Ingreso\Prog\python_prog_I\jueguito\images\locations\city\all.png\\"
 path_lvl_2 = r"D:\UTN\Utn Ingreso\Prog\jueguito2\REPO_PROG1\Lvls\Lvl2.json\\"
 path_platforms_lvl_2 =r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\tileset\space_ship\Tiles"
+#agregar en el json hasta despues del asset y lo anterior tenerlo como constante 
 ANCHO_VENTANA = 1500
 ALTO_VENTANA = 800
 GROUND_LEVEL = 705
 FPS = 60
+#NOMBRES DE ASSETS PARA LOS TILES LVL2
+ACID_TOP = 16
+ACID_BOTTOM = 17
+MOVING_Y_PLATFORM = 14
+SPYKE = 15
+MOVING_X_PLATFORM = 19
+WALL_FACING_R = 20
+WALL_FACING_L = 21
 
 PATH_IMAGE = r"D:\UTN\Utn Ingreso\Prog\python_prog_I\jueguito\images\\"
 DIRECTION_L = 0
