@@ -1,6 +1,7 @@
 {
     "nivel_uno":{
-
+        "screen":"./assets/locations/mountain/all.png",
+        "tiles":"./assets/tileset/forest/Tiles",
         "platforms":[
             {
                 "x": 400,

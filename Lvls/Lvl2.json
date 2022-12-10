@@ -1,5 +1,7 @@
 {
     "nivel_dos":{
+        "screen":"./assets/locations/city/all.png",
+        "tiles":"./assets/tileset/space_ship/Tiles",
         "platforms":[
             {
                 "x": 0,
