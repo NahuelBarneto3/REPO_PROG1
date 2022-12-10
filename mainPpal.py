@@ -6,7 +6,7 @@ from player import Player
 from enemigo import Enemy
 from plataforma import Plataform 
 from collitions import Collition
-
+#dasdasdasdasdS
 from Enemy_fire import EnemyFire
 from fruits import Fruits
 from lvl_Config import LvlConfig
