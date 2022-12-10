@@ -9,34 +9,50 @@ from player import Player
 from Enemy_fire import EnemyFire
 from key import Key
 from exit_gate import Door
+
 class LvlConfig():
     def __init__(self,lvl):
         self.lvl = lvl
+        self.level_timer_sec = 0
+        #self.level_timer_min = 0
         match(self.lvl):
             case 1:
                 self.data = self.CargarJson(path_lvl_1)
-                self.__screen = screen_lvl_1_path #constants #self.get_screen()
+                self.level_timer_sec = 60
+                #self.level_timer_min = 0
                 self.nivel = "nivel_uno"
                 self.__player = Player(x=10,y=463,respawn_pos_x=10,respawn_pos_y=600,speed_walk=8,speed_run=12,gravity=16,jump_power=40,frame_rate_ms=20,move_rate_ms=20,jump_height=150,p_scale=0.2,interval_time_jump=400)
-                self.tiles = path_platforms_lvl_1            
+                self.__screen = self.get_screen()
+                self.tiles = self.get_tiles()
             case 2:
                 self.data = self.CargarJson(path_lvl_2)
-                self.__screen = screen_lvl_2_path #constants 
+                self.level_timer_sec = 100
+                #self.level_timer_min = 1
                 self.nivel = "nivel_dos"
                 self.__player = Player(x=10,y=295,respawn_pos_x=10,respawn_pos_y=295,speed_walk=8,speed_run=12,gravity=16,jump_power=40,frame_rate_ms=20,move_rate_ms=20,jump_height=150,p_scale=0.2,interval_time_jump=400)
                 #10 #290
-                self.tiles = path_platforms_lvl_2
-                pass
+                self.__screen = self.get_screen()
+                self.tiles = self.get_tiles()
 
 
     def CargarJson(self,file):
-        with open(file, 'r') as f:
+        with open(file, 'r', encoding="utf-8") as f:
             self.data = json.load(f)
         return self.data
     
-    # def get_screen(self):
-    #     screen= self.data[self.nivel]["screen"]
-    #     return screen
+    def get_timer_sec(self):
+        return self.level_timer_sec
+    # def get_timer_min(self):
+    #     return self.level_timer_min
+                
+    def get_screen(self):
+        print(self.nivel)
+        screen= self.data[self.nivel]["screen"]
+        return screen
+
+    def get_tiles(self):
+        tiles= self.data[self.nivel]["tiles"]
+        return tiles
 
     def get_door(self):
         exit_gate_list_dic = self.data[self.nivel]["exit_gate"]

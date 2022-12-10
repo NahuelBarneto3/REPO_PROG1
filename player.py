@@ -74,6 +74,7 @@ class Player:
         self.player_dead = False
         self.winning_state = False
 
+        
     def walk(self,direction):
         if(self.direction != direction or (self.animation != self.walk_r and self.animation != self.walk_l)):
             self.frame = 0

@@ -21,7 +21,6 @@ screen = pygame.display.set_mode((ANCHO_VENTANA,ALTO_VENTANA), flags, 16)
 pygame.init()
 
 
-
 menu_form = FormMenu(name="menu_form",master_surface=screen,x=0,y=0,active=True,lvl=1)
 option_form = FormOptions(name="option_form",master_surface=screen,x=0,y=0,active=True,lvl=1)
 form_start_lvl = FormLvlStart(name="form_start_lvl",master_surface=screen,x=0,y=0,active=True,lvl=2)

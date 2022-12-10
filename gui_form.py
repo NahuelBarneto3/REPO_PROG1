@@ -87,26 +87,29 @@ class FormLvlStart(Form):
         self.config = LvlConfig(self.lvl)
         self.in_door = False
         self.clock = pygame.time.Clock()
-        
+        # self.lvl_timer_min = self.config.get_timer_min()
+        # self.lvl_last_timer_min = pygame.time.get_ticks()
+        self.lvl_timer_sec = self.config.get_timer_sec()
+        self.lvl_last_timer_sec = pygame.time.get_ticks()
         #al ser propiedad no lleva parentesis get_lvl_image
         self.imagen_fondo = pygame.image.load(self.config.get_lvl_image).convert_alpha()
 
         self.imagen_fondo = pygame.transform.scale(self.imagen_fondo,(ANCHO_VENTANA,ALTO_VENTANA))
-        #ENEMIGOS
+        #ENEMIES
         self.ground_enemy_list = self.config.get_walking_fideitos()
         self.att_enemy_list = self.config.get_att_enemy()
-        #FRUTAS
+        self.enemy_fire_list = self.config.get_enemy_fire()
+        #OBJECTIVES
         self.fruits_list = self.config.get_frutita()
         self.key_list = self.config.get_keys()
         self.door_list = self.config.get_door()
-        #PLAYER
-        
+        #PLATFORMS
         self.platform_list = self.config.get_platforms()
-        self.enemy_fire_list = self.config.get_enemy_fire()
+
         self.respawn_fire_list = []
         self.player_1 = self.config.get_player
         self.collition = Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list,self.platform_list,self.key_list,self.door_list)
-        #PLATAFORMAS
+
 
 
     # def config(self):
@@ -154,6 +157,7 @@ class FormLvlStart(Form):
             #             enemy_fire_element.spawn_bullet()
         
         #print(self.player_1.rect.y)
+        #COLLITIONS
         self.collition.player_collide_enemy()
         self.collition.enemy_collide_player(self.delta_ms)
         self.collition.att_enemy_sees_player()
@@ -162,6 +166,19 @@ class FormLvlStart(Form):
         self.collition.player_hit_acid()
         self.collition.player_gets_key()
         
+        if(self.lvl_timer_sec >= 0 ):
+            timer_sec = pygame.time.get_ticks()
+            timer_min = pygame.time.get_ticks()
+            if(timer_sec - self.lvl_last_timer_sec > ONE_SEC):
+                self.lvl_last_timer_sec = timer_sec
+                self.lvl_timer_sec -= 1
+            #     if(self.lvl_last_timer_sec == 0 and self.lvl_last_timer_min != 0):
+            #         self.lvl_last_timer_sec = 60
+            # if(timer_min - self.lvl_last_timer_min > ONE_MIN):
+            #     self.lvl_last_timer_min = timer_min
+            #     self.lvl_last_timer_min -= 1
+
+
         if(self.player_1.get_player_keys() == 1):
             self.in_door = self.collition.player_in_door()
 
@@ -181,7 +198,7 @@ class FormLvlStart(Form):
                 for att_enemy in self.att_enemy_list:
                     att_enemy.winning_status() 
             self.re_init()
-        if(self.player_1.get_player_lives() == 0):          
+        if self.player_1.get_player_lives() == 0 or self.lvl_timer_sec == 0:          
             if self.player_1.player_is_dead():
                 death_sound.fadeout(5000)
                 
@@ -212,6 +229,11 @@ class FormLvlStart(Form):
             for door_element in self.door_list:
                 door_element.draw(self.screen)
         self.player_1.draw(self.screen)
+
+        time_sec_text_font = pygame.font.SysFont("segoe print",30)
+        time_sec_text = time_sec_text_font.render("Time: "+str(self.lvl_timer_sec), True,(255,0,0))
+        self.screen.blit(time_sec_text,(720,20))
+       
         if(self.player_1.get_player_score() >= 2000 or self.in_door == True):
             #
             self.set_active("form_win")
@@ -320,14 +342,15 @@ class FormPause(Form):
 class FormDeath(Form):
     def __init__(self,name,master_surface,x,y,active,lvl):
         super().__init__(name,master_surface,x,y,active,lvl)
-
+        
+        self.perdiste_txt = Texts(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='PERDISTE',screen=master_surface,font_size=70)
         self.music_on_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
         self.music_off_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
         self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
         self.perdiste_txt = Texts(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2+50,text='Perdiste',screen=master_surface,font_size=40)
         self.retry_btn = Button(x=ANCHO_VENTANA/1.2-15,y=ALTO_VENTANA//2+100,text='Reintentar',screen=master_surface,on_click=self.click_retry,on_click_param="menu_form",font_size=25)
                                                                                                                                                             #form_start_lvl
-        self.lista_widget = [self.music_off_btn,self.music_on_btn,self.back_btn,self.retry_btn]
+        self.lista_widget = [self.music_off_btn,self.music_on_btn,self.back_btn,self.retry_btn,self.perdiste_txt]
 
     def click_retry(self,parametro):
         self.set_active(parametro)

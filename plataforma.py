@@ -9,6 +9,9 @@ class Plataform:
         self.path = path
         self.image_list= Auxiliar.getSurfaceFromSeparateFiles(path+r"\{0}.png\\",23,flip=False,w=width,h=height)
         self.type = type
+        #self.move = move podria haber hecho un self move y que si estuviera trrue mover la plataforma y si no no, pero ya tenia demasiadas plataformas
+        #hechas de esta manera por lo que cambiarlo me llevaba demasiado cambio y asi cada nivel puede tener mejor distruibuidas las plataformas
+        #y es mas facil de modificar, al miismo tiempo simp[lificaria] mucho codigo
         self.image = self.image_list[type]
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -42,7 +45,7 @@ class Plataform:
             self.wall_rect = pygame.Rect(x+self.rect.w/8,y,self.rect.w/4,self.rect.h)
 
     def do_animation(self,delta_ms):
-        if self.path != r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\tileset\forest\Tiles":
+        if self.path != "./assets/tileset/forest/Tiles":
             self.tiempo_transcurrido_move += delta_ms
             if(self.tiempo_transcurrido_move >= self.move_rate_ms):
                 self.tiempo_transcurrido_move = 0
