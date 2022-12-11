@@ -4,6 +4,7 @@ from auxiliar import Auxiliar
 from collitions import Collition
 import random
 class Enemy:
+
     
     def __init__(self,x,y,r_limit,l_limit,speed_walk,speed_run,gravity,frame_rate_ms,move_rate_ms,dying_time,e_scale) -> None:
         

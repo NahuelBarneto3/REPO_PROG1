@@ -4,6 +4,7 @@ from auxiliar import Auxiliar
 import random
 
 
+
 class Plataform:
     def __init__(self,path, x, y,width, height,  type=1,move_rate_ms=20, change_direction= True):
         self.path = path

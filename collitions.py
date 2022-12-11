@@ -6,6 +6,7 @@ from auxiliar import Auxiliar
 
 
 
+
 class Collition():
     def __init__(self,enemy_list,player,att_enemy_list,fruit_list,fire_list,platform_list,key_list,door_list):
         self.att_enemy_list = att_enemy_list

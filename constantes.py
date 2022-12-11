@@ -23,7 +23,7 @@ MOVING_X_PLATFORM = 19
 WALL_FACING_R = 20
 WALL_FACING_L = 21
 
-PATH_IMAGE = r"D:\UTN\Utn Ingreso\Prog\python_prog_I\jueguito\images\\"
+PATH_IMAGE = r"D:/UTN/Utn Ingreso/Prog/python_prog_I/jueguito/images//"
 DIRECTION_L = 0
 DIRECTION_R = 1
 GROUND_COLLIDE_H = 10 # Aprox Gravedad/2 + 1
@@ -34,18 +34,18 @@ BULL_SPAWN_Y = GROUND_LEVEL-200
 OUT_SCREEN_R = 1600
 OUT_SCREEN_L = -100
 
-menu_music =pygame.mixer.music.load(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\WAV\Persona5OST.wav\\")
+menu_music =pygame.mixer.music.load("./assets/WAV/Persona5OST.wav")
 menu_music =pygame.mixer.music.play(0,0,4000)
 menu_music =pygame.mixer.music.set_volume(0)
-death_sound = pygame.mixer.Sound(r'D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\WAV\enemydie.wav\\') 
+death_sound = pygame.mixer.Sound("./assets/WAV/enemydie.wav") 
 death_sound.set_volume(0.2)
-fruit_pick_up_sound = pygame.mixer.Sound(r'D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\WAV\comida.wav\\')
+fruit_pick_up_sound = pygame.mixer.Sound("./assets/WAV/comida.wav")
 fruit_pick_up_sound.set_volume(0.2)
-click_sound = pygame.mixer.Sound(r'D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\WAV\click.wav\\')
+click_sound = pygame.mixer.Sound("./assets/WAV/click.wav")
 click_sound.set_volume(0.2)
-win_fanfare_sound = pygame.mixer.Sound(r'D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\WAV\ff7_fanfare.wav\\')
+win_fanfare_sound = pygame.mixer.Sound("./assets/WAV/ff7_fanfare.wav")
 win_fanfare_sound.set_volume(0.1)
-death_sound = pygame.mixer.Sound(r'D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\WAV\a-comerlaa.wav\\')
+death_sound = pygame.mixer.Sound("./assets/WAV/a-comerlaa.wav")
 death_sound.set_volume(0.1)
-door_sound = pygame.mixer.Sound(r'D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\WAV\door.wav\\')
+door_sound = pygame.mixer.Sound("./assets/WAV/door.wav")
 door_sound.set_volume(0.3)

@@ -25,7 +25,7 @@ class Form():
         self.y = y
 
         self.active = active
-        self.surface = pygame.image.load(r'D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\images\celeste-1.jpg').convert_alpha()
+        self.surface = pygame.image.load("./assets/images/celeste-1.jpg").convert_alpha()
         self.surface = pygame.transform.scale(self.surface,(ANCHO_VENTANA,ALTO_VENTANA))
         self.slave_rect = self.surface.get_rect()
         self.slave_rect.x = x
@@ -166,7 +166,7 @@ class FormLvlStart(Form):
         self.collition.player_hit_acid()
         self.collition.player_gets_key()
         
-        if(self.lvl_timer_sec >= 0 ):
+        if(self.lvl_timer_sec > 0 ):
             timer_sec = pygame.time.get_ticks()
             timer_min = pygame.time.get_ticks()
             if(timer_sec - self.lvl_last_timer_sec > ONE_SEC):

@@ -1,5 +1,6 @@
 import pygame
 
+
 class Auxiliar:
     @staticmethod
     def getSurfaceFromSpriteSheet(path,columnas,filas,flip=False, step = 1,scale=1):

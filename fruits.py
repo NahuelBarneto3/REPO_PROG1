@@ -5,6 +5,7 @@ from collitions import Collition
 import pygame
 
 
+
 '''
    surface_fotograma = pygame.image.load(path)
             fotograma_ancho_scaled = int(surface_fotograma.get_rect().w * scale)

@@ -35,6 +35,7 @@ class LvlConfig():
                 self.tiles = self.get_tiles()
 
 
+
     def CargarJson(self,file):
         with open(file, 'r', encoding="utf-8") as f:
             self.data = json.load(f)

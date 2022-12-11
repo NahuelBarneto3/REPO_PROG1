@@ -5,6 +5,7 @@ from enemigo import Enemy
 from collitions import Collition
 
 
+
 class Player:
     def __init__(self,x,y,respawn_pos_x,respawn_pos_y,speed_walk,speed_run,gravity,jump_power,frame_rate_ms,move_rate_ms,jump_height,p_scale=1,interval_time_jump=100) -> None:
         '''
