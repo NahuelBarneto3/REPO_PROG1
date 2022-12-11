@@ -14,7 +14,7 @@ import pygame
 class Fruits:
     
     def __init__(self,x,y,frame_rate_ms,move_rate_ms,f_scale) -> None:
-        self.fruit = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\food\banana\bananita.png\\",1,flip=False,scale=f_scale)
+        self.fruit = Auxiliar.getSurfaceFromSeparateFiles(r"./assets/food/banana/bananita.png",1,flip=False,scale=f_scale)
         self.image = self.fruit[0]
         self.move_y = 0
         self.speed_move = 1

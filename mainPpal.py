@@ -23,7 +23,7 @@ pygame.init()
 
 menu_form = FormMenu(name="menu_form",master_surface=screen,x=0,y=0,active=True,lvl=1)
 option_form = FormOptions(name="option_form",master_surface=screen,x=0,y=0,active=True,lvl=1)
-form_start_lvl = FormLvlStart(name="form_start_lvl",master_surface=screen,x=0,y=0,active=True,lvl=2)
+form_start_lvl = FormLvlStart(name="form_start_lvl",master_surface=screen,x=0,y=0,active=True,lvl=1)
 form_pause = FormPause(name="form_pause",master_surface=screen,x=0,y=0,active=True,lvl=1)
 form_death = FormDeath(name="form_death",master_surface=screen,x=0,y=0,active=True,lvl=1)
 form_win = FormWin(name="form_win",master_surface=screen,x=0,y=0,active=True,lvl=1)

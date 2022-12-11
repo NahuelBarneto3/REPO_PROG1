@@ -14,7 +14,7 @@ import pygame
 class Key:
     
     def __init__(self,x,y,frame_rate_ms,move_rate_ms,f_scale) -> None:
-        self.key = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\elements\door_key_2\key.png\\",1,flip=False,scale=f_scale)
+        self.key = Auxiliar.getSurfaceFromSeparateFiles(r"assets/elements/door_key_2/key.png",1,flip=False,scale=f_scale)
         self.image = self.key[0]
         self.move_y = 0
         self.speed_move = 1

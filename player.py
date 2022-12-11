@@ -12,17 +12,17 @@ class Player:
         self.walk_r = Auxiliar.getSurfaceFromSpriteSheet("images/caracters/stink/walk.png",15,1,scale=p_scale)[:12]
         '''
         
-        self.stay_r = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Idle ({0}).png\\",10,flip=False,scale=p_scale)
-        self.stay_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Idle ({0}).png\\",10,flip=True,scale=p_scale)
-        self.jump_r = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Jump ({0}).png\\",10,flip=False,scale=p_scale)
-        self.jump_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Jump ({0}).png\\",10,flip=True,scale=p_scale)
-        self.walk_r = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Run ({0}).png\\",8,flip=False,scale=p_scale)
-        self.walk_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Run ({0}).png\\",8,flip=True,scale=p_scale)
-        self.shoot_r = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Shoot ({0}).png\\",3,flip=False,scale=p_scale,repeat_frame=2)
-        self.shoot_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Shoot ({0}).png\\",3,flip=True,scale=p_scale,repeat_frame=2)
-        self.knife_r = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Melee ({0}).png\\",7,flip=False,scale=p_scale,repeat_frame=1)
-        self.knife_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Melee ({0}).png\\",7,flip=True,scale=p_scale,repeat_frame=1)
-        self.hit = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\cowgirl\Dead ({0}).png\\",4,flip=False,scale=p_scale,repeat_frame=1)
+        self.stay_r = Auxiliar.getSurfaceFromSeparateFiles(r"assets/caracters/players/cowgirl/Idle ({0}).png/",10,flip=False,scale=p_scale)
+        self.stay_l = Auxiliar.getSurfaceFromSeparateFiles(r"assets/caracters/players/cowgirl/Idle ({0}).png/",10,flip=True,scale=p_scale)
+        self.jump_r = Auxiliar.getSurfaceFromSeparateFiles(r"assets/caracters/players/cowgirl/Jump ({0}).png/",10,flip=False,scale=p_scale)
+        self.jump_l = Auxiliar.getSurfaceFromSeparateFiles(r"assets/caracters/players/cowgirl/Jump ({0}).png/",10,flip=True,scale=p_scale)
+        self.walk_r = Auxiliar.getSurfaceFromSeparateFiles(r"assets/caracters/players/cowgirl/Run ({0}).png/",8,flip=False,scale=p_scale)
+        self.walk_l = Auxiliar.getSurfaceFromSeparateFiles(r"assets/caracters/players/cowgirl/Run ({0}).png/",8,flip=True,scale=p_scale)
+        self.shoot_r = Auxiliar.getSurfaceFromSeparateFiles(r"assets/caracters/players/cowgirl/Shoot ({0}).png/",3,flip=False,scale=p_scale,repeat_frame=2)
+        self.shoot_l = Auxiliar.getSurfaceFromSeparateFiles(r"assets/caracters/players/cowgirl/Shoot ({0}).png/",3,flip=True,scale=p_scale,repeat_frame=2)
+        self.knife_r = Auxiliar.getSurfaceFromSeparateFiles(r"assets/caracters/players/cowgirl/Melee ({0}).png/",7,flip=False,scale=p_scale,repeat_frame=1)
+        self.knife_l = Auxiliar.getSurfaceFromSeparateFiles(r"assets/caracters/players/cowgirl/Melee ({0}).png/",7,flip=True,scale=p_scale,repeat_frame=1)
+        self.hit = Auxiliar.getSurfaceFromSeparateFiles(r"assets/caracters/players/cowgirl/Dead ({0}).png/",4,flip=False,scale=p_scale,repeat_frame=1)
         self.frame = 0
         self.respawn_pos_x = respawn_pos_x
         self.respawn_pos_y = respawn_pos_y

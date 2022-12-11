@@ -14,7 +14,7 @@ import pygame
 class Door:
     
     def __init__(self,x,y,frame_rate_ms,move_rate_ms,d_scale) -> None:
-        self.door = Auxiliar.getSurfaceFromSpriteSheet(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\elements\anti_gravitys_rainbow\puerta.png\\",6,8,flip=False,scale=d_scale)
+        self.door = Auxiliar.getSurfaceFromSpriteSheet(r"./assets/elements/anti_gravitys_rainbow/puerta.png",6,8,flip=False,scale=d_scale)
         self.animation = self.door
         self.frame = 0
         self.image = self.animation[self.frame]

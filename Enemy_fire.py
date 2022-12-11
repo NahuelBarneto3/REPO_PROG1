@@ -5,8 +5,8 @@ import random
 class EnemyFire:
     
     def __init__(self,id_b,bullet_speed,firing_cd,frame_rate_ms,b_scale):
-        self.fire_anim_r = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Objects\Bullet_00{0}.png\\",5,flip=False, scale= b_scale)
-        self.fire_anim_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Objects\Bullet_00{0}.png\\",5,flip=True, scale= b_scale)
+        self.fire_anim_r = Auxiliar.getSurfaceFromSeparateFiles(r"./assets/caracters/players/robot/Objects/Bullet_00{0}.png",5,flip=False, scale= b_scale)
+        self.fire_anim_l = Auxiliar.getSurfaceFromSeparateFiles(r"./assets/caracters/players/robot/Objects/Bullet_00{0}.png",5,flip=True, scale= b_scale)
         self.id = id_b
         self.animation = self.fire_anim_r
         self.direction = random.randrange(0,2)

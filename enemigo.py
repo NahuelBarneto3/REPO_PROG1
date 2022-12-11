@@ -8,9 +8,9 @@ class Enemy:
     
     def __init__(self,x,y,r_limit,l_limit,speed_walk,speed_run,gravity,frame_rate_ms,move_rate_ms,dying_time,e_scale) -> None:
         
-        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\jueguito\images\inhabitants\dust\walk_right.png\\",9,1)
-        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\jueguito\images\inhabitants\dust\walk_left.png\\",8,1)
-        self.die_anim = Auxiliar.getSurfaceFromSpriteSheet(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\effects\explosions\explosion-3.png\\",10,1)
+        self.walk_r = Auxiliar.getSurfaceFromSpriteSheet(r"assets/caracters/enemies/dustbunny/walk_right.png",9,1)
+        self.walk_l = Auxiliar.getSurfaceFromSpriteSheet(r"assets/caracters/enemies/dustbunny/walk_left.png",8,1)
+        self.die_anim = Auxiliar.getSurfaceFromSpriteSheet(r"assets/effects/explosions/explosion-3.png",10,1)
         self.frame = 0
         self.move_x = 0
         self.move_y = 0

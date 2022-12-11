@@ -168,7 +168,7 @@ class FormLvlStart(Form):
         
         if(self.lvl_timer_sec > 0 ):
             timer_sec = pygame.time.get_ticks()
-            timer_min = pygame.time.get_ticks()
+           # timer_min = pygame.time.get_ticks()
             if(timer_sec - self.lvl_last_timer_sec > ONE_SEC):
                 self.lvl_last_timer_sec = timer_sec
                 self.lvl_timer_sec -= 1
@@ -186,7 +186,7 @@ class FormLvlStart(Form):
         self.player_1.update(self.delta_ms,self.platform_list)
 
         
-        if(self.player_1.get_player_score() >= 2000 or self.in_door == True):
+        if(self.player_1.get_player_score() >= 200 or self.in_door == True):
             win_fanfare_sound.play()
             win_fanfare_sound.fadeout(10000)
             pygame.mixer.music.pause()
@@ -197,7 +197,7 @@ class FormLvlStart(Form):
             if(self.att_enemy_list != None):
                 for att_enemy in self.att_enemy_list:
                     att_enemy.winning_status() 
-            self.re_init()
+            
         if self.player_1.get_player_lives() == 0 or self.lvl_timer_sec == 0:          
             if self.player_1.player_is_dead():
                 death_sound.fadeout(5000)
@@ -234,7 +234,7 @@ class FormLvlStart(Form):
         time_sec_text = time_sec_text_font.render("Time: "+str(self.lvl_timer_sec), True,(255,0,0))
         self.screen.blit(time_sec_text,(720,20))
        
-        if(self.player_1.get_player_score() >= 2000 or self.in_door == True):
+        if(self.player_1.get_player_score() >= 200 or self.in_door == True):
             #
             self.set_active("form_win")
             self.player_1.reset()

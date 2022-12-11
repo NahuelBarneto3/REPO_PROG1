@@ -8,10 +8,10 @@ from Enemy_fire import EnemyFire
 class Attacking_Enemy():
     def __init__(self,x,y,speed_walk,speed_run,gravity,frame_rate_ms,move_rate_ms,dying_time,e_scale=1) -> None:
         
-        self.walk_r = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Run ({0}).png\\",8,flip=False,scale=e_scale)
-        self.walk_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Run ({0}).png\\",8,flip=True,scale=e_scale)
-        self.die_anim = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Dead ({0}).png\\",10,flip=False,scale=e_scale)
-        self.stay = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Idle ({0}).png\\",10,flip=False,scale=e_scale)
+        self.walk_r = Auxiliar.getSurfaceFromSeparateFiles(r"./assets/caracters/players/robot/Run ({0}).png",8,flip=False,scale=e_scale)
+        self.walk_l = Auxiliar.getSurfaceFromSeparateFiles(r"./assets/caracters/players/robot/Run ({0}).png",8,flip=True,scale=e_scale)
+        self.die_anim = Auxiliar.getSurfaceFromSeparateFiles(r"./assets/caracters/players/robot/Dead ({0}).png",10,flip=False,scale=e_scale)
+        self.stay = Auxiliar.getSurfaceFromSeparateFiles(r"./assets/caracters/players/robot/Idle ({0}).png",10,flip=False,scale=e_scale)
         #self.sight_range = pygame.Rect()
         #self.fire_anim_r = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Objects\Bullet_00{0}.png\\",5,flip=False, scale= e_scale)
         #self.fire_anim_l = Auxiliar.getSurfaceFromSeparateFiles(r"D:\UTN\Utn Ingreso\Prog\python_prog_I\assets\caracters\players\robot\Objects\Bullet_00{0}.png\\",5,flip=True, scale= e_scale)

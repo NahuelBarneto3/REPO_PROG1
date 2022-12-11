@@ -36,7 +36,7 @@ OUT_SCREEN_L = -100
 
 menu_music =pygame.mixer.music.load("./assets/WAV/Persona5OST.wav")
 menu_music =pygame.mixer.music.play(0,0,4000)
-menu_music =pygame.mixer.music.set_volume(0)
+menu_music =pygame.mixer.music.set_volume(0.2)
 death_sound = pygame.mixer.Sound("./assets/WAV/enemydie.wav") 
 death_sound.set_volume(0.2)
 fruit_pick_up_sound = pygame.mixer.Sound("./assets/WAV/comida.wav")
