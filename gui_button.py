@@ -7,7 +7,7 @@ class Button(Widget):
     def __init__(self,x,y,text,screen,on_click=None,on_click_param=None,font_size=20):
         super().__init__(x,y,text,screen,font_size)
         pygame.font.init()
-        self.font = pygame.font.Font("assets/Fonts/game.ttf",self.font_size)
+        self.font = pygame.font.Font("./assets/Fonts/Qtback.otf",self.font_size)
         self.text_image = self.font.render(self.text,True,(255,255,0))
         self.rect = self.text_image.get_rect()
         self.rect.center = (x,y)

@@ -12,6 +12,7 @@ from collitions import Collition
 from Enemy_fire import EnemyFire
 from fruits import Fruits
 from lvl_Config import LvlConfig
+from sql import *
 
 pygame.mixer.pre_init()
 mixer.init()
@@ -49,13 +50,16 @@ class FormMenu(Form):
         #self.main_menu_ttl =
         self.selected_lvl = lvl
         self.pushed_start = False
-       #self.start_btn = Button(x=ANCHO_VENTANA/1.25,y=ALTO_VENTANA//2-100,text='start',screen=master_surface,on_click=self.click_start,on_click_param="form_start_lvl",font_size=40)
-        self.option_btn = Button(x=ANCHO_VENTANA/1.25,y=ALTO_VENTANA//2-200,text='options',screen=master_surface,on_click=self.click_options,on_click_param="option_form",font_size=40)
+        self.puntajes_btn = Button(x=ANCHO_VENTANA/1.25,y=ALTO_VENTANA//2,text='Puntajes',screen=master_surface,on_click=self.click_puntajes,on_click_param="form_puntajes",font_size=40)
+        self.option_btn = Button(x=ANCHO_VENTANA/1.25,y=ALTO_VENTANA//2-200,text='Options',screen=master_surface,on_click=self.click_options,on_click_param="option_form",font_size=40)
         self.lvl_select_btn = Button(x=ANCHO_VENTANA/1.25,y=ALTO_VENTANA//2-300,text='Seleccionar Nivel',screen=master_surface,on_click=self.click_select_lvl,on_click_param="form_lvl_select",font_size=40)
         # self.boton1 = Button(master=self,x=100,y=50,w=200,h=50,color_background=(255,0,0),color_border=(255,0,255),on_click=self.on_click_boton1,on_click_param="1234",text="MENU",font="Verdana",font_size=30,font_color=(0,255,0))
         # self.boton2 = Button(master=self,x=200,y=50,w=200,h=50,color_background=(255,0,0),color_border=(255,0,255),on_click=self.on_click_boton1,on_click_param="8",text="MENU 2",font="Verdana",font_size=30,font_color=(0,255,0))
-        self.lista_widget = [self.option_btn,self.lvl_select_btn]#self.start_btn,
+        self.lista_widget = [self.option_btn,self.lvl_select_btn,self.puntajes_btn]#self.start_btn,
         
+    def click_puntajes(self, parametro):
+        self.set_active(parametro)
+        click_sound.play(0,450,0)
     def click_select_lvl(self, parametro):
         self.set_active(parametro)
         click_sound.play(0,450,0)
@@ -82,7 +86,7 @@ class FormLvlStart(Form):
         super().__init__(name,master_surface,x,y,active,lvl)
 
         self.lvl = lvl
-
+        self.sql = Sql()
         self.screen = master_surface
         self.config = LvlConfig(self.lvl)
         self.in_door = False
@@ -187,9 +191,8 @@ class FormLvlStart(Form):
 
         
         if(self.player_1.get_player_score() >= 200 or self.in_door == True):
-            win_fanfare_sound.play()
-            win_fanfare_sound.fadeout(10000)
-            pygame.mixer.music.pause()
+            self.win()
+
         # player_1.winning_state()
             if(self.ground_enemy_list != None):
                 for ground_enemy in self.ground_enemy_list:
@@ -205,6 +208,12 @@ class FormLvlStart(Form):
                 self.set_active("form_death")
                 self.re_init()
         self.screen.blit(self.imagen_fondo,self.imagen_fondo.get_rect())
+    def win(self):
+        win_fanfare_sound.play()
+        win_fanfare_sound.fadeout(10000)
+        pygame.mixer.music.pause()
+        self.sql.add_puntuacion("NAHUEL",self.player_1.get_player_lives(),self.player_1.get_player_score(),self.lvl_timer_sec)
+
 
     def draw(self):
         
@@ -442,6 +451,33 @@ class FormLvlSelect(Form):
     def click_back(self,parametro):
         self.set_active(parametro)
     
+
+    def update(self, lista_eventos):
+        for aux_boton in self.lista_widget:
+            aux_boton.update(lista_eventos)
+
+    def draw(self): 
+        super().draw()
+        for aux_boton in self.lista_widget:    
+            aux_boton.draw()
+
+class FormPuntuaciones(Form):
+    def __init__(self,name,master_surface,x,y,active,lvl):
+        super().__init__(name,master_surface,x,y,active,lvl)
+        self.sql = Sql()
+        self.lista_puntajes = self.sql.select()
+
+        self.puntaciones_txt = Texts(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Puntuaciones',screen=master_surface,font_size=70)
+
+        self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Volver',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
+                                                                                                                                                    
+        self.lista_widget = [self.puntaciones_txt,self.back_btn]
+    
+    
+
+    def click_back(self,parametro):
+        self.set_active(parametro)
+        click_sound.play(0,450,0)
 
     def update(self, lista_eventos):
         for aux_boton in self.lista_widget:
