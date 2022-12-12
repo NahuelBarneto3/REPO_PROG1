@@ -46,7 +46,7 @@ class Sql():
         with sqlite3.connect("bd_jueguito.db") as conexion:
             cursor=conexion.execute("SELECT * FROM players")
             for fila in cursor:
-                print(fila)
+                print("----------------\nNOMBRE: {0}\nVIDAS: {1}\nPUNTAJE: {2}\nTIEMPO RESTANTE:{3}\n----------------\n".format(fila[1],fila[2],fila[3],fila[4]))
 
     def delete(self,id):
         id = id

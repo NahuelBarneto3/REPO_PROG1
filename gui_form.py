@@ -121,7 +121,7 @@ class FormLvlStart(Form):
     #     return self.config
 
     def update(self,keys):
-        
+        #UPDATES NECESARIOS DE LOS DIFERENTES OBJETOS
         self.delta_ms = self.clock.tick(FPS)
         for platform in self.platform_list:
             platform.update(self.delta_ms)
@@ -140,7 +140,8 @@ class FormLvlStart(Form):
         if self.att_enemy_list!=None:
             for att_enemy_element in self.att_enemy_list:
                 att_enemy_element.update(self.delta_ms,self.platform_list)
-            
+
+        #CHEQUEO QUE LAS TRAMPAS(BOLAS DE FUEGO LLEGUEN FUERA DE LA PANTALLA PARA PODER RESPAWNEARLAS)
         #print("FUEGO", len(self.enemy_fire_list))
         #if len(self.enemy_fire_list) > 0 and len(self.respawn_fire_list) != 3:    
         if self.enemy_fire_list != None:
@@ -149,6 +150,7 @@ class FormLvlStart(Form):
                 if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
                     self.enemy_fire_list = self.config.get_enemy_fire()
                     Collition(self.ground_enemy_list,self.player_1,self.att_enemy_list,self.fruits_list,self.enemy_fire_list,self.platform_list,self.key_list,self.door_list)
+                #IDEA DE PASAR DE UNA LISTA A LA TRA UNA VEZ QUE SE FUERAN TODAS PARA QUE NO DESAPARECIERAN TODAS DE UNA 
                     #enemy_fire_element.is_out_id()
                 # if(enemy_fire_element.is_out_id() == 0 or enemy_fire_element.is_out_id() == 1 or enemy_fire_element.is_out_id() == 2):
                 #     self.respawn_fire_list = self.enemy_fire_list.pop(enemy_fire_element.is_out_id())
@@ -161,11 +163,12 @@ class FormLvlStart(Form):
             #             enemy_fire_element.spawn_bullet()
         
         #print(self.player_1.rect.y)
-        #COLLITIONS
+        #COLLITIONS, CHEQUEO TODAS LAS COLISIONES 
         self.collition.player_collide_enemy()
         self.collition.enemy_collide_player(self.delta_ms)
         self.collition.att_enemy_sees_player()
         self.collition.player_pick_up_fruit()
+        #EL PROBLEMA QUE TENIA ES QUE EL ESPACIO DE MEMORIA CACMBIABA PORQUE ESTABA INSTANCIANDO LA LISTA CADA VEZ QUE UNA BALA SALIA, ESTA FUE LA SOLUCION
         self.collition.player_collides_fire(self.enemy_fire_list)#recibe cada vez el nuevo lugar de memoria en el que se esta alojando 
         self.collition.player_hit_acid()
         self.collition.player_gets_key()
