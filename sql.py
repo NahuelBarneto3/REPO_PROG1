@@ -12,6 +12,7 @@ def create_table():
                                     tiempo integer
                                 ) 
                             '''
+                            
                 conexion.execute(sentence)
                 print("table")
             except sqlite3.OperationalError:
