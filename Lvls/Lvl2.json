@@ -853,6 +853,7 @@
             },
             {
                 "x": 680,
+      
                 "y": 280,
                 "frame_rate_ms" :10,
                 "move_rate_ms": 100,
