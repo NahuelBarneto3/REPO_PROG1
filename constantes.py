@@ -23,7 +23,7 @@ MOVING_X_PLATFORM = 19
 WALL_FACING_R = 20
 WALL_FACING_L = 21
 
-PATH_IMAGE = r"D:/UTN/Utn Ingreso/Prog/python_prog_I/jueguito/images//"
+PATH_IMAGE = "./assets/images"
 DIRECTION_L = 0
 DIRECTION_R = 1
 GROUND_COLLIDE_H = 10 # Aprox Gravedad/2 + 1
