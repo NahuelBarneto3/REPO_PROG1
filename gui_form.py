@@ -1,3 +1,7 @@
+#INGRESO DE DATOS
+#NIVEL 3 MEZCLA DE LOS DOS ANTERIORES
+#SQL
+
 import pygame
 from pygame.locals import *
 from gui_widget import Widget
@@ -16,7 +20,7 @@ from sql import *
 
 pygame.mixer.pre_init()
 mixer.init()
-
+#FORM DEL QUE HEREDO
 class Form():
     forms_dict = {}
     def __init__(self,name,master_surface,x,y,active,lvl):
@@ -86,7 +90,7 @@ class FormLvlStart(Form):
         super().__init__(name,master_surface,x,y,active,lvl)
 
         self.lvl = lvl
-        self.sql = Sql()
+
         self.screen = master_surface
         self.config = LvlConfig(self.lvl)
         self.in_door = False
@@ -193,7 +197,7 @@ class FormLvlStart(Form):
         self.player_1.update(self.delta_ms,self.platform_list)
 
         
-        if(self.player_1.get_player_score() >= 200 or self.in_door == True):
+        if(self.player_1.get_player_score() >= 2000 or self.in_door == True):
             self.win()
 
         # player_1.winning_state()
@@ -215,7 +219,7 @@ class FormLvlStart(Form):
         win_fanfare_sound.play()
         win_fanfare_sound.fadeout(10000)
         pygame.mixer.music.pause()
-        self.sql.add_puntuacion("NAHUEL",self.player_1.get_player_lives(),self.player_1.get_player_score(),self.lvl_timer_sec)
+      #  self.sql.add_puntuacion("NAHUEL",self.player_1.get_player_lives(),self.player_1.get_player_score(),self.lvl_timer_sec)
 
 
     def draw(self):
@@ -246,7 +250,7 @@ class FormLvlStart(Form):
         time_sec_text = time_sec_text_font.render("Time: "+str(self.lvl_timer_sec), True,(255,0,0))
         self.screen.blit(time_sec_text,(720,20))
        
-        if(self.player_1.get_player_score() >= 200 or self.in_door == True):
+        if(self.player_1.get_player_score() >= 2000 or self.in_door == True):
             #
             self.set_active("form_win")
             self.player_1.reset()
@@ -465,14 +469,21 @@ class FormLvlSelect(Form):
             aux_boton.draw()
 
 class FormPuntuaciones(Form):
-    def __init__(self,name,master_surface,x,y,active,lvl):
-        super().__init__(name,master_surface,x,y,active,lvl)
-        self.sql = Sql()
-        self.lista_puntajes = self.sql.select()
+    def __init__(self,name:str,master_surface:object,x:int,y:int,active:bool,level_num:int,music_name:str,ranking_list:list)->None:
+        super().__init__(name,master_surface,x,y,active,level_num,music_name)
 
-        self.puntaciones_txt = Texts(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Puntuaciones',screen=master_surface,font_size=70)
+        self.surface = pygame.image.load(PATH_IMAGE + "/celeste.jpeg").convert_alpha()
+        self.surface = pygame.transform.scale(self.surface,(ANCHO_VENTANA,ALTO_VENTANA))
+        self.slave_rect = self.surface.get_rect()
+        self.slave_rect.x = x
+        self.slave_rect.y = y
 
-        self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Volver',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
+        self.ranking_on_screen = []
+        self.ranking_list=ranking_list
+
+        self.subtitle = Texts(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text="TOP 5 RANKINGS",screen=master_surface,font_size=50)
+        self.button_return_menu = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2+200,text="VOLVER AL MENU",screen=master_surface
+        ,on_click=self.click_back,on_click_param="menu_form")
                                                                                                                                                     
         self.lista_widget = [self.puntaciones_txt,self.back_btn]
     

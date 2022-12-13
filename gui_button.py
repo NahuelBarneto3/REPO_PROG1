@@ -87,3 +87,32 @@ class Texts(Widget):
 
     
 
+class TextBox(Widget):
+    def __init__(self,x,y,text,screen,on_click=None,on_click_param=None,font_size=20):
+        self.font = pygame.font.Font("./assets/Fonts/Qtback.otf",self.font_size)
+        self.image = self.font.render(self.text,True,(255,255,0))
+        self.rect = self.image.get_rect()
+        self.rect.center = (x,y)
+        self.on_click = on_click
+        self.on_click_param = on_click_param
+        self.write_on =True
+        self._writing=""
+        self.img_writing = self.font.render(self._writing,True,(255,255,0))
+        self.rect_writing = self.img_writing.get_rect()
+        self.rect_writing.center = (x,y)
+
+    def write(self, event_list):
+        for event in event_list:
+                        
+            if (event.type == pygame.KEYDOWN and self.write_on):
+                
+                if event.key == pygame.K_BACKSPACE:
+                    self._writing = self._writing[:-1]
+                else:
+                    self._writing += event.unicode
+
+
+    def draw(self):
+        super().draw()
+        self.image.blit(self.screen,(self.rect_writing.x,self.rect_writing.y))
+        

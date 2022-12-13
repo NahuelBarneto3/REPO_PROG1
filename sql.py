@@ -1,7 +1,6 @@
 import sqlite3
 
-class Sql():
-    def __init__(self) -> None:
+def create_table():
         with sqlite3.connect("bd_jueguito.db") as conexion:
             try:
                 sentence = ''' create table players
@@ -18,42 +17,21 @@ class Sql():
             except sqlite3.OperationalError:
                 print("la table ya ta")
 
-    def add_puntuacion(self,nombre,vidas,score, time):
-        with sqlite3.connect("bd_jueguito.db") as conexion:
-            if self.modify_players_score(nombre) != []:
-                try:
-                    conexion.execute("UPDATE players SET vidas=?,score=?,tiempo=? WHERE nombre=?",(vidas,score,time,nombre))
-                    conexion.commit()
+def add_puntuacion(nombre,vidas,score, time):
+    with sqlite3.connect("bd_jueguito.db") as conexion:
+        try:
+            conexion.execute("insert into players(nombre,vidas,score,tiempo) values (?,?,?,?)",(nombre,vidas,score,time))
+        except sqlite3.OperationalError as error:
+            print("Error ",error)
 
-                except sqlite3.OperationalError as error:
-                    print("Error: ",error)       
-            else:
-                try:
-                    conexion.execute("insert into players(nombre,vidas,score,tiempo) values (?,?,?,?)",(nombre,vidas,score,time))
-                    conexion.commit()
-                    
-                except sqlite3.OperationalError as error:
-                    print("Error: ",error) 
-
-    def modify_players_score(self,nombre):
-        nombre = nombre
-        with sqlite3.connect("bd_jueguito.db") as conexion:
-            sentence = "SELECT * FROM players WHERE nombre=?"
-            cursor = conexion.execute(sentence, (nombre,))
-        return cursor.fetchall()
-
-    def select(self):
-        with sqlite3.connect("bd_jueguito.db") as conexion:
-            cursor=conexion.execute("SELECT * FROM players")
-            for fila in cursor:
-                print("----------------\nNOMBRE: {0}\nVIDAS: {1}\nPUNTAJE: {2}\nTIEMPO RESTANTE:{3}\n----------------\n".format(fila[1],fila[2],fila[3],fila[4]))
-
-    def delete(self,id):
-        id = id
-        with sqlite3.connect("bd_jueguito.db") as conexion:
-            sentence = "DELETE FROM players WHERE id=?"
-            cursor=conexion.execute(sentence,(id,))
-        return cursor.fetchall()
-        
-
-
+def retrieve_info():
+    with sqlite3.connect("bd_jueguito.db") as conexion:
+        cursor= conexion.execute('''SELECT id, nombre, vidas,score, tiempo
+                                    FROM players
+                                    ORDER BY score DESC
+                                    LIMIT 5       
+                                ''')       
+        list_top_5 = []
+        for fila in cursor:
+            list_top_5.append(fila)
+            return list_top_5
