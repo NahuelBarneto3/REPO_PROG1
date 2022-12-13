@@ -4,6 +4,7 @@
         "tiles":"./assets/tileset/forest/Tiles",
         "platforms":[
             {
+
                 "x": 400,
                 "y": 600,
                 "width": 50,

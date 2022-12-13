@@ -6,6 +6,7 @@ from auxiliar import Auxiliar
 from collitions import Collition
 from Enemy_fire import EnemyFire
 class Attacking_Enemy():
+    
     def __init__(self,x,y,speed_walk,speed_run,gravity,frame_rate_ms,move_rate_ms,dying_time,e_scale=1) -> None:
         
         self.walk_r = Auxiliar.getSurfaceFromSeparateFiles(r"./assets/caracters/players/robot/Run ({0}).png",8,flip=False,scale=e_scale)

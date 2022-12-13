@@ -29,6 +29,7 @@ class Auxiliar:
     def getSurfaceFromSeparateFiles(path_format,quantity,flip=False,step = 1,scale=1,w=0,h=0,repeat_frame=1):
         lista = []
         for i in range(1,quantity+1):
+            
             path = path_format.format(i)
             surface_fotograma = pygame.image.load(path)
             fotograma_ancho_scaled = int(surface_fotograma.get_rect().w * scale)
