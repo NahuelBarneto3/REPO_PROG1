@@ -8,10 +8,13 @@ details and sounds from another games and things i like.
 <h3> Here is some footage ofthe game </h3>
 
 <h3> INTERACTIVE MENU </h3>
-![image_text](https://github.com/NahuelBarneto3/REPO_PROG1/blob/main/InGameFootage/MENU.png)
+![image_text]
+(https://github.com/NahuelBarneto3/REPO_PROG1/blob/main/InGameFootage/MENU.png)
 <h3> TWO PLAYABLE LEVELS </h3>
-![image_text](https://github.com/NahuelBarneto3/REPO_PROG1/blob/main/InGameFootage/NIVEL1.png)
-![image_text](https://github.com/NahuelBarneto3/REPO_PROG1/blob/main/InGameFootage/nivel 2.png)
+![image_text]
+(https://github.com/NahuelBarneto3/REPO_PROG1/blob/main/InGameFootage/NIVEL1.png)
+![image_text]
+(https://github.com/NahuelBarneto3/REPO_PROG1/blob/main/InGameFootage/nivel2.png)
 
 <h3> GAME CARATERISTICS </h3>
 
