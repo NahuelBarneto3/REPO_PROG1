@@ -1,12 +1,33 @@
 <h1 align="center">Hi, I'm Nahuel Barneto</h1>
 <h3 align="center">I'm studying Programming at UTN (Universidad Tecnologica Nacional)</h3>
 
-Acttualy I’m working on [a VideoGame](https://github.com/NahuelBarneto3/REPO_PROG1) that is my final project of
+Actually I’m working on [a VideoGame](https://github.com/NahuelBarneto3/REPO_PROG1) that is my final project of
 Programacion I. Its a platform game inspired by ideas from Mario and my favorite game, Celeste. Also has some 
 details and sounds from another games and things i like.
 
+<h3> Here is some footage ofthe game </h3>
 
+<h3> INTERACTIVE MENU </h3>
+![image](https://user-images.githubusercontent.com/108838663/207630187-082ae1bf-4e36-41dd-a9df-d921fea2bc35.png)
+<h3> TWO PLAYABLE LEVELS </h3>
+![image](https://user-images.githubusercontent.com/108838663/207630865-c99c5f4b-f2ac-4668-bfe6-9dd01c16bea4.png)
+![image](https://user-images.githubusercontent.com/108838663/207631047-1087c666-12bd-4c11-919d-72a0e02d9320.png)
 
+<h3> GAME CARATERISTICS </h3>
+
+-2D Graphics
+-Animations of every character and enemy
+-Patrolling enemies
+-Damage to the player and to the enemies from the player 
+-Graphical Interface as it how many time or lives you've got and how much time you have to finish the lvl
+-Sound effects, menu and game music.
+-Option menu to turn on and off the music
+
+<h3> Future Ideas </h3>
+-Random enemies
+-Being able to learn Paralax
+-Shooting and attacking
+-Diferent objectives and Better hit boxes
 
 
 - 🔭 I’m working on [a VideoGame](https://github.com/NahuelBarneto3/REPO_PROG1)
