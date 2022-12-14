@@ -1,6 +1,14 @@
 <h1 align="center">Hi, I'm Nahuel Barneto</h1>
 <h3 align="center">I'm studying Programming at UTN (Universidad Tecnologica Nacional)</h3>
 
+Acttualy I’m working on [a VideoGame](https://github.com/NahuelBarneto3/REPO_PROG1) that is my final project of
+Programacion I. Its a platform game inspired by ideas from Mario and my favorite game, Celeste. Also has some 
+details and sounds from another games and things i like.
+
+
+
+
+
 - 🔭 I’m working on [a VideoGame](https://github.com/NahuelBarneto3/REPO_PROG1)
 
 - 🌱 I’m currently learning **Python, Pygame, Sqlite, Objects**
