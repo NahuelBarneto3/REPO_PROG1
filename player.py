@@ -296,8 +296,8 @@ class Player:
             lives_in_screen = self.draw_lives()
             score_in_screen = self.draw_score()
             self.image = self.animation[self.frame]
-            screen.blit(score_in_screen,(10,10))
-            screen.blit(lives_in_screen,(10,50))
+            screen.blit(score_in_screen,(150,10))
+            screen.blit(lives_in_screen,(300,10))
             screen.blit(self.image,self.rect)
         
 
