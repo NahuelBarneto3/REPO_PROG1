@@ -8,8 +8,8 @@ class Button(Widget):
         super().__init__(x,y,text,screen,font_size)
         pygame.font.init()
         self.font = pygame.font.Font("./assets/Fonts/Qtback.otf",self.font_size)
-        self.text_image = self.font.render(self.text,True,(255,255,0))
-        self.rect = self.text_image.get_rect()
+        self.image = self.font.render(self.text,True,(255,255,0))
+        self.rect = self.image.get_rect()
         self.rect.center = (x,y)
         #self.on_click_sound = pygame.mixer.Sound()
         self.on_click = on_click
@@ -62,9 +62,9 @@ class Texts(Widget):
     def __init__(self,x,y,text,screen,on_click=None,on_click_param=None,font_size=20):
         super().__init__(x,y,text,screen,font_size)
         pygame.font.init()
-        self.font = pygame.font.Font(r"./assets/Fonts/retry.ttf",self.font_size)
-        self.text_image = self.font.render(self.text,True,(255,0,255))
-        self.rect = self.text_image.get_rect()
+        self.font = pygame.font.Font(r"./assets/Fonts/Qtback.otf",self.font_size)
+        self.image = self.font.render(self.text,True,(255,255,255))
+        self.rect = self.image.get_rect()
         self.rect.center = (x,y)
         self.on_click = on_click
         self.on_click_param = on_click_param
@@ -89,8 +89,9 @@ class Texts(Widget):
 
 class TextBox(Widget):
     def __init__(self,x,y,text,screen,on_click=None,on_click_param=None,font_size=20):
-        self.font = pygame.font.Font("./assets/Fonts/Qtback.otf",self.font_size)
-        self.image = self.font.render(self.text,True,(255,255,0))
+        super().__init__(x,y,text,screen,font_size)
+        self.font = pygame.font.Font("./assets/Fonts/Qtback.otf",font_size)
+        self.image = self.font.render(text,True,(255,255,255))
         self.rect = self.image.get_rect()
         self.rect.center = (x,y)
         self.on_click = on_click
@@ -115,4 +116,7 @@ class TextBox(Widget):
     def draw(self):
         super().draw()
         self.image.blit(self.screen,(self.rect_writing.x,self.rect_writing.y))
-        
+
+    def update(self,event_list):
+        self.draw()
+        self.write(event_list) 
