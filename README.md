@@ -5,8 +5,8 @@ Actually I’m working on [a VideoGame](https://github.com/NahuelBarneto3/REPO_P
 Programacion I. Its a platform game inspired by ideas from Mario and my favorite game, Celeste. It also has some 
 details and sounds from another games and things i like.
 
-<h3> Here is some footage ofthe game </h3>
-
+<h3> Here is some footage of the game </h3>
+[GameTrailer](https://youtu.be/M0JlkOKABoI)
 <h3> INTERACTIVE MENU </h3>
 
 ![image_text](https://github.com/NahuelBarneto3/REPO_PROG1/blob/main/InGameFootage/MENU.png)
