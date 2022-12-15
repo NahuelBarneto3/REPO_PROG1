@@ -6,7 +6,9 @@ Programacion I. Its a platform game inspired by ideas from Mario and my favorite
 details and sounds from another games and things i like.
 
 <h3> Here is some footage of the game </h3>
+
 [GameTrailer](https://youtu.be/M0JlkOKABoI)
+
 <h3> INTERACTIVE MENU </h3>
 
 ![image_text](https://github.com/NahuelBarneto3/REPO_PROG1/blob/main/InGameFootage/MENU.png)
