@@ -44,9 +44,8 @@ def retrieve_info():
         cur = conexion.cursor()
         res = cur.execute(sql_select)
         print("res",res.fetchall())
-        return cur.execute(sql_select).fetchall()
-        # cursor= conexion.execute('''SELECT * FROM players''')  
-        # conexion.commit      
+        return cur.execute(sql_select).fetchall()        
+        # cursor= conexion.execute('''SELECT * FROM players''')
         # list_top_5 = []
         # for fila in cursor:
         #     list_top_5.append(fila)

@@ -2,14 +2,6 @@ import pygame
 from pygame.locals import *
 import sys
 from constantes import *
-from player import Player
-from enemigo import Enemy
-from plataforma import Plataform 
-from collitions import Collition
-#dasdasdasdasdS
-from Enemy_fire import EnemyFire
-from fruits import Fruits
-from lvl_Config import LvlConfig
 from gui_form import *
 import warnings 
 from sql import *

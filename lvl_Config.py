@@ -15,6 +15,7 @@ class LvlConfig():
         self.lvl = lvl
         self.level_timer_sec = 0
         #self.level_timer_min = 0
+        self.__keys_needed = 0
         match(self.lvl):
             case 1:
                 self.data = self.CargarJson(path_lvl_1)
@@ -28,9 +29,18 @@ class LvlConfig():
                 self.data = self.CargarJson(path_lvl_2)
                 self.level_timer_sec = 100
                 #self.level_timer_min = 1
+                self.__keys_needed = 1
                 self.nivel = "nivel_dos"
                 self.__player = Player(x=10,y=295,respawn_pos_x=10,respawn_pos_y=295,speed_walk=8,speed_run=12,gravity=16,jump_power=40,frame_rate_ms=20,move_rate_ms=20,jump_height=150,p_scale=0.2,interval_time_jump=400)
-                #10 #290
+                self.__screen = self.get_screen()
+                self.tiles = self.get_tiles()
+            case 3:
+                self.data = self.CargarJson(path_lvl_3)
+                self.level_timer_sec = 100
+                #self.level_timer_min = 1
+                self.__keys_needed = 3
+                self.nivel = "nivel_tres"
+                self.__player = Player(x=650,y=150,respawn_pos_x=650,respawn_pos_y=150,speed_walk=8,speed_run=12,gravity=16,jump_power=40,frame_rate_ms=20,move_rate_ms=20,jump_height=150,p_scale=0.2,interval_time_jump=400)
                 self.__screen = self.get_screen()
                 self.tiles = self.get_tiles()
 
@@ -135,3 +145,7 @@ class LvlConfig():
     @property
     def get_player(self):
         return self.__player
+
+    @property
+    def return_lvl_keys_needed(self):
+        return self.__keys_needed

@@ -54,9 +54,9 @@ class FormMenu(Form):
         #self.main_menu_ttl =
         self.selected_lvl = lvl
         self.pushed_start = False
-        self.puntajes_btn = Button(x=ANCHO_VENTANA/1.25,y=ALTO_VENTANA//2,text='Puntajes',screen=master_surface,on_click=self.click_puntajes,on_click_param="form_puntajes",font_size=40)
-        self.option_btn = Button(x=ANCHO_VENTANA/1.25,y=ALTO_VENTANA//2-200,text='Options',screen=master_surface,on_click=self.click_options,on_click_param="option_form",font_size=40)
-        self.lvl_select_btn = Button(x=ANCHO_VENTANA/1.25,y=ALTO_VENTANA//2-300,text='Seleccionar Nivel',screen=master_surface,on_click=self.click_select_lvl,on_click_param="form_lvl_select",font_size=40)
+        self.puntajes_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2,text='Puntajes',screen=master_surface,on_click=self.click_puntajes,on_click_param="form_puntajes",font_size=40)
+        self.option_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-200,text='Options',screen=master_surface,on_click=self.click_options,on_click_param="option_form",font_size=40)
+        self.lvl_select_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-300,text='Seleccionar Nivel',screen=master_surface,on_click=self.click_select_lvl,on_click_param="form_lvl_select",font_size=40)
         # self.boton1 = Button(master=self,x=100,y=50,w=200,h=50,color_background=(255,0,0),color_border=(255,0,255),on_click=self.on_click_boton1,on_click_param="1234",text="MENU",font="Verdana",font_size=30,font_color=(0,255,0))
         # self.boton2 = Button(master=self,x=200,y=50,w=200,h=50,color_background=(255,0,0),color_border=(255,0,255),on_click=self.on_click_boton1,on_click_param="8",text="MENU 2",font="Verdana",font_size=30,font_color=(0,255,0))
         self.lista_widget = [self.option_btn,self.lvl_select_btn,self.puntajes_btn]#self.start_btn,
@@ -111,6 +111,8 @@ class FormLvlStart(Form):
         self.fruits_list = self.config.get_frutita()
         self.key_list = self.config.get_keys()
         self.door_list = self.config.get_door()
+        self.keys_needed = self.config.return_lvl_keys_needed
+        
         #PLATFORMS
         self.platform_list = self.config.get_platforms()
 
@@ -190,7 +192,7 @@ class FormLvlStart(Form):
             #     self.lvl_last_timer_min -= 1
 
 
-        if(self.player_1.get_player_keys() == 1):
+        if(self.player_1.get_player_keys() == self.keys_needed):
             self.in_door = self.collition.player_in_door()
 
         self.player_1.events(self.delta_ms,keys)
@@ -296,9 +298,9 @@ class FormOptions(Form):
 
     #self.main_menu_ttl = 
 
-        self.music_on_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
-        self.music_off_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
-        self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
+        self.music_on_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-200,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
+        self.music_off_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-100,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
+        self.back_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
         self.lista_widget = [self.music_off_btn,self.music_on_btn,self.back_btn]
         
 
@@ -329,11 +331,11 @@ class FormPause(Form):
     #self.main_menu_ttl = 
         self.lvl = lvl
 
-        self.music_on_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
-        self.music_off_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
-        self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
+        self.music_on_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-100,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
+        self.music_off_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-200,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
+        self.back_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
 
-        self.resume_btn = Button(x=ANCHO_VENTANA/1.2-15,y=ALTO_VENTANA//2,text='Volver al juego',screen=master_surface,on_click=self.click_resume,on_click_param="form_start_lvl",font_size=40)
+        self.resume_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2,text='Volver al juego',screen=master_surface,on_click=self.click_resume,on_click_param="form_start_lvl",font_size=40)
         self.lista_widget = [self.music_off_btn,self.music_on_btn,self.back_btn,self.resume_btn]
 
     
@@ -365,12 +367,12 @@ class FormDeath(Form):
     def __init__(self,name,master_surface,x,y,active,lvl):
         super().__init__(name,master_surface,x,y,active,lvl)
         
-        self.perdiste_txt = Texts(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='PERDISTE',screen=master_surface,font_size=70)
-        self.music_on_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
-        self.music_off_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
-        self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
-        self.perdiste_txt = Texts(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2+50,text='Perdiste',screen=master_surface,font_size=40)
-        self.retry_btn = Button(x=ANCHO_VENTANA/1.2-15,y=ALTO_VENTANA//2+100,text='Reintentar',screen=master_surface,on_click=self.click_retry,on_click_param="menu_form",font_size=25)
+        self.perdiste_txt = Texts(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-300,text='PERDISTE',screen=master_surface,font_size=70)
+        self.music_on_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-100,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
+        self.music_off_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-200,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
+        self.back_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-300,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
+        self.perdiste_txt = Texts(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2+50,text='Perdiste',screen=master_surface,font_size=40)
+        self.retry_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2+100,text='Reintentar',screen=master_surface,on_click=self.click_retry,on_click_param="menu_form",font_size=25)
                                                                                                                                                             #form_start_lvl
         self.lista_widget = [self.music_off_btn,self.music_on_btn,self.back_btn,self.retry_btn,self.perdiste_txt]
 
@@ -484,7 +486,7 @@ class FormPuntuaciones(Form):
         self.ranks_db=ranks_db
 
         self.puntuaciones_txt = Texts(x=ANCHO_VENTANA//2,y=ALTO_VENTANA//2-250,text="TOP 5 RANKINGS",screen=master_surface,font_size=50)
-        self.back_btn = Button(x=ANCHO_VENTANA//2,y=ALTO_VENTANA//2+400,text="VOLVER AL MENU",screen=master_surface,on_click=self.click_back,on_click_param="menu_form")
+        self.back_btn = Button(x=ANCHO_VENTANA//2,y=ALTO_VENTANA//2+200,text="VOLVER AL MENU",screen=master_surface,on_click=self.click_back,on_click_param="menu_form")
 
         #if ranks_db != None :
         for i in range(len(ranks_db)):
@@ -522,11 +524,11 @@ class FormWin(Form):
         super().__init__(name,master_surface,x,y,active,lvl)
 
         self.puntaje = puntaje
-        self.music_on_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
-        self.music_off_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-100,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
-        self.back_btn = Button(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-200,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
-        self.ganaste_txt = Texts(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-300,text='Ganaste',screen=master_surface,font_size=70)
-        self.puntaje_txt = Texts(x=ANCHO_VENTANA/1.2-10,y=ALTO_VENTANA//2-400,text='Puntos {0}'.format(self.puntaje),screen=master_surface,font_size=50)
+        self.music_on_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2,text='Music ON',screen=master_surface,on_click=self.click_music_on,font_size=40)
+        self.music_off_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-100,text='Music OFF',screen=master_surface,on_click=self.click_music_off,font_size=40)
+        self.back_btn = Button(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-200,text='Volver al menu',screen=master_surface,on_click=self.click_back,on_click_param="menu_form",font_size=40)
+        self.ganaste_txt = Texts(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-300,text='Ganaste',screen=master_surface,font_size=70)
+        self.puntaje_txt = Texts(x=ANCHO_VENTANA/2+300,y=ALTO_VENTANA//2-400,text='Puntos {0}'.format(self.puntaje),screen=master_surface,font_size=50)
         
                                                                                                                                                      
         self.lista_widget = [self.puntaje_txt,self.music_off_btn,self.music_on_btn,self.back_btn,self.ganaste_txt]
@@ -604,7 +606,7 @@ class FormName(Form):
         self.ingresar_nombre_txt = Texts(x=ANCHO_VENTANA//2,y=ALTO_VENTANA//2-450,text="INGRESAR NOMBRE",screen=master_surface,font_size=50)
         
 
-        self.text_box = TextBox(x=ANCHO_VENTANA//2,y=ALTO_VENTANA//2+250,text="____________________",screen=master_surface,font_size=30)
+        self.text_box = TextBox(x=ANCHO_VENTANA//2,y=ALTO_VENTANA//2+10,text="____________________",screen=master_surface,font_size=30)
         
         self.confirm_btn = Button(x=ANCHO_VENTANA//2,y=ALTO_VENTANA//2+350,text="CONFIRMAR NOMBRE",screen=master_surface,on_click=self.click_confirm,on_click_param="form_win")
         

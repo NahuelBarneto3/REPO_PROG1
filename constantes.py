@@ -6,6 +6,7 @@ mixer.init()
 
 path_lvl_1 = "./Lvls/Lvl1.json"
 path_lvl_2 = "./Lvls/Lvl2.json"
+path_lvl_3 = "./Lvls/Lvl3.json"
 
 ONE_SEC = 1000
 ONE_MIN = 60000
@@ -14,7 +15,7 @@ ANCHO_VENTANA = 1500
 ALTO_VENTANA = 800
 GROUND_LEVEL = 705
 FPS = 60
-#NOMBRES DE ASSETS PARA LOS TILES LVL2
+#NOMBRES DE ASSETS PARA LOS TILES
 ACID_TOP = 16
 ACID_BOTTOM = 17
 MOVING_Y_PLATFORM = 14
@@ -33,6 +34,7 @@ DEBUG = False
 BULL_SPAWN_Y = GROUND_LEVEL-200
 OUT_SCREEN_R = 1600
 OUT_SCREEN_L = -100
+#lo saque momentaneamente porq era muy pesado
 
 # menu_music =pygame.mixer.music.load("./assets/WAV/Persona5OST.wav")
 # menu_music =pygame.mixer.music.play(0,0,4000)
