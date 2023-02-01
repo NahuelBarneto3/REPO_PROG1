@@ -27,7 +27,7 @@ details and sounds from another games and things i like.
 -Animations of every character and enemy
 -Patrolling enemies
 -Damage to the player and to the enemies from the player 
--Graphical Interface as it how many time or lives you've got and how much time you have to finish the lvl
+-Graphical Interface as how many time or lives you've got and how much time you have to finish the level
 -Sound effects, menu and game music.
 -Option menu to turn on and off the music
 
