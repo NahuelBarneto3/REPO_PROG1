@@ -37,11 +37,6 @@ details and sounds from another games and things i like.
 -Shooting and attacking
 -Diferent objectives and Better hit boxes
 
-
-- 🔭 I’m working on [a VideoGame](https://github.com/NahuelBarneto3/REPO_PROG1)
-
-- 🌱 I’m currently learning **Python, Pygame, Sqlite, Objects**
-
 - 👨‍💻 All of my projects are available at [https://github.com/NahuelBarneto3](https://github.com/NahuelBarneto3)
 
 - 📫 How to reach me **nahuelbarneto@gmail.com**
