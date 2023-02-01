@@ -40,8 +40,6 @@ details and sounds from another games and things i like.
 - 👨‍💻 All of my projects are available at [https://github.com/NahuelBarneto3](https://github.com/NahuelBarneto3)
 
 - 📫 How to reach me **nahuelbarneto@gmail.com**
-
-<h3 align="left">Connect with me:</h3>
 <p align="left">
 </p>
 
